@@ -8,20 +8,24 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,300;1,6..72,400&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
   :root {
-    --paper:        #0f1420;
-    --paper-deep:   #151c2e;
-    --paper-edge:   #1c2538;
-    --ink:          #ede7d9;
-    --ink-soft:     #b5af9f;
-    --ink-faint:    #6b6660;
-    --rule:         #2a3550;
-    --rule-light:   #20304a;
-    --accent:       #FE5F55;
-    --accent-soft:  #fe8079;
+    --paper:        #ffffff;
+    --paper-deep:   #faf8f5;
+    --paper-edge:   #f0ece4;
+    --ink:          #18181b;
+    --ink-soft:     #52525b;
+    --ink-faint:    #a1a1aa;
+    --rule:         #d4d4d8;
+    --rule-light:   #e4e4e7;
+    --accent:       #b45309;
+    --accent-soft:  #d97706;
+
+    --font-display: 'Newsreader', Georgia, serif;
+    --font-sans:    'Geist', system-ui, -apple-system, sans-serif;
+    --font-mono:    'JetBrains Mono', monospace;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -41,14 +45,13 @@
     font-weight: 400;
   }
 
-  /* Subtle dark grain texture */
+  /* Subtle light grain texture */
   body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.04 0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>");
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0.04 0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>");
     opacity: 0.6;
-    mix-blend-mode: overlay;
     pointer-events: none;
     z-index: 0;
   }
@@ -60,70 +63,85 @@
   /* ================ MASTHEAD ================ */
   .masthead {
     border-bottom: 1px solid var(--rule);
-    padding: 28px clamp(28px, 5vw, 80px);
+    padding: 22px clamp(28px, 5vw, 80px);
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 32px;
   }
   .masthead-mark {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    letter-spacing: 0.02em;
     color: var(--ink-soft);
+    font-weight: 400;
   }
   .masthead-mark strong {
     color: var(--ink);
-    font-weight: 500;
+    font-weight: 600;
   }
   .masthead-edition {
     text-align: center;
-    font-family: 'Newsreader', serif;
+    font-family: var(--font-display);
     font-style: italic;
     font-weight: 300;
     font-size: 14px;
     color: var(--ink-soft);
   }
   .masthead-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.16em;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    letter-spacing: 0.04em;
     color: var(--ink-soft);
-    text-transform: uppercase;
+    text-align: right;
+    font-weight: 500;
   }
 
   /* ================ HERO ================ */
   .hero {
-    padding: 80px clamp(28px, 5vw, 80px) 60px;
-    border-bottom: 3px double var(--rule);
+    padding: 96px clamp(28px, 5vw, 80px) 80px;
+    border-bottom: 1px solid var(--rule);
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 60px;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 80px;
     align-items: end;
   }
   @media (max-width: 880px) {
-    .hero { grid-template-columns: 1fr; gap: 40px; }
+    .hero { grid-template-columns: 1fr; gap: 48px; padding-top: 64px; }
   }
 
   .hero-eyebrow {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-sans);
     font-size: 12px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
+    letter-spacing: 0.04em;
     color: var(--accent);
-    margin-bottom: 32px;
-    border-top: 1px solid var(--ink);
-    padding-top: 16px;
-    display: inline-block;
+    margin-bottom: 36px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 14px 6px 6px;
+    background: var(--paper-deep);
+    border: 1px solid var(--rule);
+    border-radius: 100px;
+    font-weight: 500;
   }
+  .hero-eyebrow::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-left: 4px;
+  }
+
   .hero h1 {
-    font-family: 'Newsreader', serif;
+    font-family: var(--font-display);
     font-weight: 400;
-    font-size: clamp(44px, 6.5vw, 88px);
-    line-height: 1.02;
-    letter-spacing: -0.015em;
-    margin-bottom: 28px;
+    font-size: clamp(52px, 7.5vw, 104px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    margin-bottom: 32px;
     color: var(--ink);
   }
   .hero h1 em {
@@ -132,7 +150,7 @@
     color: var(--accent);
   }
   .hero-sub {
-    font-family: 'Newsreader', serif;
+    font-family: var(--font-display);
     font-style: italic;
     font-weight: 300;
     font-size: clamp(20px, 2vw, 26px);
@@ -143,32 +161,44 @@
 
   .hero-facts {
     border: 1px solid var(--rule);
-    background: var(--paper-deep);
-    padding: 28px;
+    background: var(--paper);
+    padding: 0;
   }
   .hero-fact {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    padding: 12px 0;
-    border-bottom: 1px dotted var(--rule);
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--rule-light);
     gap: 16px;
   }
   .hero-fact:last-child { border-bottom: none; }
   .hero-fact dt {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.18em;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--ink-soft);
+    color: var(--ink-faint);
     flex-shrink: 0;
+    font-weight: 500;
   }
   .hero-fact dd {
-    font-family: 'Newsreader', serif;
-    font-size: 16px;
+    font-family: var(--font-display);
+    font-size: 17px;
     color: var(--ink);
     text-align: right;
     font-weight: 500;
+  }
+  .hero-fact:first-child {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .hero-fact:first-child dt { color: var(--accent-soft); }
+  .hero-fact:first-child dd {
+    color: var(--paper);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
   }
 
   /* ================ SECTION SHELL ================ */
@@ -179,11 +209,11 @@
   section.column.tight { padding-top: 64px; padding-bottom: 64px; }
 
   .section-no {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--ink-soft);
+    color: var(--accent);
     margin-bottom: 16px;
     display: flex;
     align-items: center;
@@ -249,12 +279,13 @@
     margin-top: 8px;
   }
   .sidenote-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.18em;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
     color: var(--accent);
     margin-bottom: 10px;
+    font-weight: 500;
   }
   .sidenote h3 {
     font-family: 'Newsreader', serif;
@@ -270,9 +301,9 @@
     margin-bottom: 14px;
   }
   .sidenote dl {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.06em;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    letter-spacing: 0.01em;
     margin-top: 18px;
     padding-top: 14px;
     border-top: 1px dotted var(--rule);
@@ -282,8 +313,8 @@
     justify-content: space-between;
     padding: 4px 0;
   }
-  .sidenote dt { color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.12em; }
-  .sidenote dd { color: var(--ink); font-weight: 500; }
+  .sidenote dt { color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.04em; font-weight: 500; }
+  .sidenote dd { color: var(--ink); font-weight: 600; }
 
   /* ================ SPEAKERS — focal section ================ */
   .speakers-section {
@@ -312,12 +343,13 @@
     letter-spacing: -0.03em;
   }
   .speakers-count .lbl {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.2em;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
     margin-top: 8px;
     color: var(--ink-soft);
+    font-weight: 500;
   }
 
   .speakers-grid {
@@ -361,13 +393,14 @@
     flex-shrink: 0;
   }
   .speaker-country {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.18em;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 0.04em;
     color: var(--ink-soft);
-    text-transform: uppercase;
     border: 1px solid var(--rule);
-    padding: 4px 8px;
+    padding: 5px 10px;
+    border-radius: 100px;
+    font-weight: 500;
   }
   .speaker-name {
     font-family: 'Newsreader', serif;
@@ -395,12 +428,13 @@
     border-top: 1px dotted var(--rule);
   }
   .speaker-talk-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.18em;
+    font-family: var(--font-sans);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--ink-faint);
-    margin-bottom: 6px;
+    color: var(--accent);
+    margin-bottom: 8px;
+    font-weight: 500;
   }
   .speaker-talk-title {
     font-family: 'Newsreader', serif;
@@ -419,25 +453,27 @@
     gap: 0;
     border-top: 2px solid var(--ink);
     border-bottom: 1px solid var(--ink);
-    padding: 14px 0;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    padding: 16px 0;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    letter-spacing: 0.04em;
     color: var(--ink-soft);
+    font-weight: 500;
   }
   .schedule-head > div { padding: 0 18px; }
   .schedule-head .day-label {
-    font-weight: 500;
+    font-weight: 600;
     color: var(--ink);
+    text-transform: uppercase;
   }
   .schedule-head .date-label {
-    font-family: 'Newsreader', serif;
+    font-family: var(--font-display);
     font-style: italic;
     text-transform: none;
     letter-spacing: 0;
-    font-size: 14px;
+    font-size: 16px;
     color: var(--accent);
+    font-weight: 500;
   }
 
   .schedule-day {
@@ -453,12 +489,13 @@
   }
 
   .schedule-time {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
+    font-family: var(--font-mono);
+    font-size: 12px;
     color: var(--ink-soft);
     padding: 18px;
     border-right: 1px solid var(--rule);
     background: var(--paper-deep);
+    letter-spacing: -0.01em;
   }
   .schedule-slot {
     padding: 18px;
@@ -467,12 +504,13 @@
   }
   .schedule-slot:last-child { border-right: none; }
   .slot-type {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9.5px;
-    letter-spacing: 0.18em;
-    color: var(--ink-faint);
+    font-family: var(--font-sans);
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    color: var(--accent);
     text-transform: uppercase;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
+    font-weight: 500;
   }
   .slot-title {
     font-family: 'Newsreader', serif;
@@ -529,11 +567,12 @@
     color: var(--accent);
   }
   .schedule-day-banner .day-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.16em;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
     color: var(--ink-soft);
+    font-weight: 500;
   }
 
   /* ================ THEMES (compact) ================ */
@@ -578,11 +617,11 @@
   }
   .theme-keywords {
     margin-top: 18px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    letter-spacing: 0.02em;
     color: var(--ink-faint);
-    text-transform: uppercase;
+    font-weight: 500;
   }
 
   /* ================ VENUE ================ */
@@ -606,12 +645,13 @@
     gap: 24px;
   }
   .venue-info dt {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.18em;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
     color: var(--ink-soft);
     padding-top: 4px;
+    font-weight: 500;
   }
   .venue-info dd {
     font-family: 'Newsreader', serif;
@@ -639,14 +679,14 @@
   .venue-map svg { flex: 1; width: 100%; height: 100%; }
   .venue-map-caption {
     margin-top: 16px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-sans);
     font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    letter-spacing: 0.04em;
     color: var(--ink-soft);
     text-align: center;
     border-top: 1px dotted var(--rule);
     padding-top: 14px;
+    font-weight: 500;
   }
 
   /* ================ ORGANIZATION ================ */
@@ -687,11 +727,12 @@
     margin-bottom: 12px;
   }
   .org-country {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.16em;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 0.04em;
     color: var(--accent);
     text-transform: uppercase;
+    font-weight: 500;
   }
 
   /* ================ FOOTER ================ */
@@ -728,13 +769,13 @@
     line-height: 1.65;
   }
   .footer-col h5 {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.18em;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
     color: var(--ink);
     margin-bottom: 16px;
-    font-weight: 500;
+    font-weight: 600;
   }
   .footer-col p, .footer-col a {
     display: block;
@@ -752,14 +793,70 @@
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 16px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 10.5px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--ink-faint);
   }
 
-  /* ================ UTILITY ================ */
+  /* ================ CITY PHOTO ================ */
+  .city-photo {
+    width: 100%;
+    height: 420px;
+    background: var(--paper-deep);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .city-photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  .city-photo-placeholder {
+    text-align: center;
+    pointer-events: none;
+  }
+  .city-photo-placeholder svg {
+    width: 48px;
+    height: 48px;
+    color: var(--rule);
+    margin-bottom: 14px;
+  }
+  .city-photo-placeholder p {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 500;
+  }
+  .city-photo-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 14px clamp(28px, 5vw, 80px);
+    background: linear-gradient(transparent, rgba(255,255,255,0.92));
+    font-family: var(--font-sans);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: none;
+    font-weight: 500;
+  }
+  .city-photo img ~ .city-photo-placeholder { display: none; }
+  .city-photo img ~ .city-photo-caption { display: block; }
   .rule-ornament {
     width: 60px;
     height: 1px;
@@ -1216,14 +1313,14 @@
         <div class="slot-type">Special Session</div>
         <div class="slot-title"><em>Poster session &amp; reception</em></div>
       </div>
-      <div class="schedule-slot" style="background: var(--rule-light); opacity: 0.5;">
+      <div class="schedule-slot" style="background: var(--paper-edge); opacity: 0.7;">
         <div class="slot-type">— end of day —</div>
       </div>
     </div>
 
   </div>
 
-  <p style="margin-top: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); text-align: right;">
+  <p style="margin-top: 32px; font-family: var(--font-sans); font-size: 12px; letter-spacing: 0.02em; color: var(--ink-faint); text-align: right; font-weight: 400;">
     † Specific dates, talk titles and speaker assignments to be finalised closer to the event.
   </p>
 </section>
@@ -1254,6 +1351,31 @@
     </div>
   </div>
 </section>
+
+<!-- ================ CITY PHOTO ================ -->
+<div class="city-photo">
+  <!--
+    To add a photo:
+    1. Place your image file in the 2026/img/ folder (e.g. 2026/img/sjc.jpg)
+    2. Uncomment and update the <img> tag below:
+
+    <img src="img/sjc.jpg" alt="São José dos Campos — Vale do Paraíba" />
+
+    Recommended: landscape image, at least 1600×900 px.
+  -->
+  <div class="city-photo-placeholder">
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" xmlns="http://www.w3.org/2000/svg">
+      <rect x="4" y="10" width="40" height="30" rx="1"/>
+      <circle cx="17" cy="22" r="4"/>
+      <path d="M4 34 l10-10 7 7 8-10 15 13"/>
+      <line x1="24" y1="4" x2="24" y2="10"/>
+      <line x1="18" y1="6" x2="24" y2="10"/>
+      <line x1="30" y1="6" x2="24" y2="10"/>
+    </svg>
+    <p>Photo of São José dos Campos · Replace with actual image</p>
+  </div>
+  <div class="city-photo-caption">São José dos Campos · Vale do Paraíba · São Paulo State · Brazil</div>
+</div>
 
 <!-- ================ VENUE ================ -->
 <section class="column" id="venue">
@@ -1291,53 +1413,52 @@
         <!-- subtle grid -->
         <defs>
           <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#2a3550" stroke-width="0.3" opacity="0.9"/>
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#d4d4d8" stroke-width="0.4" opacity="0.8"/>
           </pattern>
         </defs>
         <rect width="400" height="400" fill="url(#grid)"/>
 
-        <!-- coastline / state outline (stylised SP state shape) -->
+        <!-- coastline / state outline -->
         <path d="M 30 240 Q 70 230 110 245 Q 150 255 180 240 Q 210 220 250 230 Q 290 240 330 220 Q 360 200 380 220 L 380 380 Q 320 370 270 380 Q 220 385 180 375 Q 130 370 80 380 Q 50 385 30 370 Z"
-              fill="#1c2538" stroke="#3a5080" stroke-width="0.8" opacity="0.8"/>
+              fill="#f0ece4" stroke="#a1a1aa" stroke-width="0.8" opacity="0.9"/>
 
         <!-- Rivers (Paraíba) -->
-        <path d="M 50 180 Q 120 170 200 180 Q 280 190 360 180" fill="none" stroke="#FE5F55" stroke-width="0.6" opacity="0.5" stroke-dasharray="3 2"/>
+        <path d="M 50 180 Q 120 170 200 180 Q 280 190 360 180" fill="none" stroke="#b45309" stroke-width="0.6" opacity="0.45" stroke-dasharray="3 2"/>
 
         <!-- Roads -->
-        <path d="M 100 100 L 200 195 L 320 290" fill="none" stroke="#4a6080" stroke-width="0.5" opacity="0.6"/>
-        <path d="M 50 280 L 380 280" fill="none" stroke="#4a6080" stroke-width="0.5" opacity="0.6"/>
+        <path d="M 100 100 L 200 195 L 320 290" fill="none" stroke="#a1a1aa" stroke-width="0.5" opacity="0.7"/>
+        <path d="M 50 280 L 380 280" fill="none" stroke="#a1a1aa" stroke-width="0.5" opacity="0.7"/>
 
         <!-- Cities -->
         <g>
-          <circle cx="120" cy="240" r="3" fill="#b5af9f"/>
-          <text x="128" y="244" font-family="JetBrains Mono, monospace" font-size="9" fill="#b5af9f">São Paulo</text>
+          <circle cx="120" cy="240" r="3" fill="#52525b"/>
+          <text x="128" y="244" font-family="JetBrains Mono, monospace" font-size="9" fill="#52525b">São Paulo</text>
         </g>
-
         <g>
-          <circle cx="340" cy="200" r="3" fill="#b5af9f"/>
-          <text x="290" y="194" font-family="JetBrains Mono, monospace" font-size="9" fill="#b5af9f">Rio de Janeiro</text>
+          <circle cx="340" cy="200" r="3" fill="#52525b"/>
+          <text x="290" y="194" font-family="JetBrains Mono, monospace" font-size="9" fill="#52525b">Rio de Janeiro</text>
         </g>
 
         <!-- INPE marker -->
         <g>
-          <circle cx="200" cy="195" r="14" fill="none" stroke="#FE5F55" stroke-width="0.8" opacity="0.5"/>
-          <circle cx="200" cy="195" r="8" fill="none" stroke="#FE5F55" stroke-width="0.8" opacity="0.7"/>
-          <circle cx="200" cy="195" r="4" fill="#FE5F55"/>
-          <line x1="200" y1="195" x2="200" y2="155" stroke="#FE5F55" stroke-width="0.6"/>
-          <text x="205" y="148" font-family="Newsreader, serif" font-size="13" font-style="italic" font-weight="500" fill="#FE5F55">INPE</text>
-          <text x="205" y="162" font-family="JetBrains Mono, monospace" font-size="8" fill="#FE5F55" letter-spacing="1.2">SÃO JOSÉ DOS CAMPOS</text>
+          <circle cx="200" cy="195" r="14" fill="none" stroke="#b45309" stroke-width="0.8" opacity="0.4"/>
+          <circle cx="200" cy="195" r="8" fill="none" stroke="#b45309" stroke-width="0.8" opacity="0.65"/>
+          <circle cx="200" cy="195" r="4" fill="#b45309"/>
+          <line x1="200" y1="195" x2="200" y2="155" stroke="#b45309" stroke-width="0.6"/>
+          <text x="205" y="148" font-family="Newsreader, serif" font-size="13" font-style="italic" font-weight="500" fill="#b45309">INPE</text>
+          <text x="205" y="162" font-family="JetBrains Mono, monospace" font-size="8" fill="#b45309" letter-spacing="1.2">SÃO JOSÉ DOS CAMPOS</text>
         </g>
 
         <!-- coordinates -->
-        <text x="20" y="20" font-family="JetBrains Mono, monospace" font-size="8" fill="#6b6660" letter-spacing="1">23°12′ S · 45°51′ W</text>
-        <text x="380" y="395" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="8" fill="#6b6660" letter-spacing="1">scale ~ 100 km</text>
+        <text x="20" y="20" font-family="JetBrains Mono, monospace" font-size="8" fill="#a1a1aa" letter-spacing="1">23°12′ S · 45°51′ W</text>
+        <text x="380" y="395" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="8" fill="#a1a1aa" letter-spacing="1">scale ~ 100 km</text>
 
         <!-- compass -->
         <g transform="translate(360, 50)">
-          <circle r="14" fill="none" stroke="#2a3550" stroke-width="0.8"/>
-          <line x1="0" y1="-12" x2="0" y2="12" stroke="#4a6080" stroke-width="0.5"/>
-          <line x1="-12" y1="0" x2="12" y2="0" stroke="#4a6080" stroke-width="0.5"/>
-          <text x="0" y="-16" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#ede7d9">N</text>
+          <circle r="14" fill="none" stroke="#d4d4d8" stroke-width="0.8"/>
+          <line x1="0" y1="-12" x2="0" y2="12" stroke="#a1a1aa" stroke-width="0.5"/>
+          <line x1="-12" y1="0" x2="12" y2="0" stroke="#a1a1aa" stroke-width="0.5"/>
+          <text x="0" y="-16" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#18181b">N</text>
         </g>
       </svg>
       <figcaption class="venue-map-caption">Vale do Paraíba · São Paulo State · Brazil</figcaption>
