@@ -13,15 +13,17 @@
 <style>
   :root {
     --paper:        #ffffff;
-    --paper-deep:   #faf8f5;
-    --paper-edge:   #f0ece4;
-    --ink:          #18181b;
-    --ink-soft:     #52525b;
-    --ink-faint:    #a1a1aa;
-    --rule:         #d4d4d8;
-    --rule-light:   #e4e4e7;
-    --accent:       #b45309;
-    --accent-soft:  #d97706;
+    --paper-deep:   #f5f8fa;
+    --paper-edge:   #e8f0f5;
+    --ink:          #0c1824;
+    --ink-soft:     #3d5368;
+    --ink-faint:    #8fa3b3;
+    --rule:         #cddae3;
+    --rule-light:   #dfe8ee;
+    --accent:       #0e6e8c;
+    --accent-soft:  #1592b8;
+    --accent-warm:  #c45c1a;
+    --accent-warm-soft: #e0722a;
 
     --font-display: 'Newsreader', Georgia, serif;
     --font-sans:    'Geist', system-ui, -apple-system, sans-serif;
@@ -99,104 +101,125 @@
 
   /* ================ HERO ================ */
   .hero {
-    padding: 96px clamp(28px, 5vw, 80px) 80px;
-    border-bottom: 1px solid var(--rule);
-    display: grid;
-    grid-template-columns: 1.6fr 1fr;
-    gap: 80px;
-    align-items: end;
+    position: relative;
+    min-height: 580px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
   }
-  @media (max-width: 880px) {
-    .hero { grid-template-columns: 1fr; gap: 48px; padding-top: 64px; }
+  .hero-image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
   }
-
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    display: block;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      to bottom,
+      rgba(6, 14, 28, 0.05)  0%,
+      rgba(6, 14, 28, 0.22) 30%,
+      rgba(6, 14, 28, 0.80) 65%,
+      rgba(6, 14, 28, 0.97) 100%
+    );
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 280px clamp(28px, 5vw, 80px) 60px;
+  }
   .hero-eyebrow {
     font-family: var(--font-sans);
     font-size: 12px;
     letter-spacing: 0.04em;
-    color: var(--accent);
-    margin-bottom: 36px;
+    color: rgba(255,255,255,0.72);
+    margin-bottom: 24px;
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    padding: 6px 14px 6px 6px;
-    background: var(--paper-deep);
-    border: 1px solid var(--rule);
+    padding: 6px 14px 6px 8px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
     border-radius: 100px;
     font-weight: 500;
   }
   .hero-eyebrow::before {
     content: "";
-    width: 8px;
-    height: 8px;
-    background: var(--accent);
+    width: 8px; height: 8px;
+    background: #30d8f0;
     border-radius: 50%;
     flex-shrink: 0;
-    margin-left: 4px;
+    box-shadow: 0 0 10px #30d8f0;
   }
-
   .hero h1 {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: clamp(52px, 7.5vw, 104px);
-    line-height: 0.98;
+    font-size: clamp(48px, 7.5vw, 100px);
+    line-height: 0.97;
     letter-spacing: -0.025em;
-    margin-bottom: 32px;
-    color: var(--ink);
+    margin-bottom: 28px;
+    color: #ffffff;
   }
   .hero h1 em {
     font-style: italic;
     font-weight: 300;
-    color: var(--accent);
+    color: #60d8f0;
   }
   .hero-sub {
     font-family: var(--font-display);
     font-style: italic;
     font-weight: 300;
-    font-size: clamp(20px, 2vw, 26px);
-    color: var(--ink-soft);
+    font-size: clamp(17px, 1.7vw, 22px);
+    color: rgba(255,255,255,0.65);
     max-width: 620px;
-    line-height: 1.45;
+    line-height: 1.5;
   }
-
-  .hero-facts {
-    border: 1px solid var(--rule);
-    background: var(--paper);
-    padding: 0;
+  /* Facts strip sits below the image, dark bg extending the hero */
+  .hero-facts-strip {
+    position: relative;
+    z-index: 2;
+    background: var(--ink);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  @media (max-width: 880px) {
+    .hero-facts-strip { grid-template-columns: repeat(2, 1fr); }
   }
   .hero-fact {
+    padding: 22px 24px;
+    border-right: 1px solid rgba(255,255,255,0.06);
     display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    padding: 16px 22px;
-    border-bottom: 1px solid var(--rule-light);
-    gap: 16px;
+    flex-direction: column;
+    gap: 6px;
   }
-  .hero-fact:last-child { border-bottom: none; }
+  .hero-fact:last-child { border-right: none; }
   .hero-fact dt {
     font-family: var(--font-sans);
-    font-size: 11px;
-    letter-spacing: 0.06em;
+    font-size: 10px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--ink-faint);
-    flex-shrink: 0;
+    color: rgba(255,255,255,0.35);
     font-weight: 500;
   }
   .hero-fact dd {
     font-family: var(--font-display);
     font-size: 17px;
-    color: var(--ink);
-    text-align: right;
+    color: #ffffff;
     font-weight: 500;
   }
-  .hero-fact:first-child {
-    background: var(--ink);
-    color: var(--paper);
-  }
-  .hero-fact:first-child dt { color: var(--accent-soft); }
   .hero-fact:first-child dd {
-    color: var(--paper);
-    font-size: 22px;
+    color: #60d8f0;
+    font-size: 20px;
     font-weight: 500;
     letter-spacing: -0.01em;
   }
@@ -274,7 +297,7 @@
   }
 
   .sidenote {
-    border-left: 2px solid var(--accent);
+    border-left: 2px solid var(--accent-warm);
     padding: 4px 0 4px 24px;
     margin-top: 8px;
   }
@@ -339,7 +362,7 @@
     font-size: 96px;
     line-height: 0.9;
     font-weight: 300;
-    color: var(--accent);
+    color: var(--accent-warm);
     letter-spacing: -0.03em;
   }
   .speakers-count .lbl {
@@ -846,7 +869,7 @@
     position: absolute;
     bottom: 0; left: 0; right: 0;
     padding: 14px clamp(28px, 5vw, 80px);
-    background: linear-gradient(transparent, rgba(255,255,255,0.92));
+    background: linear-gradient(transparent, rgba(255,255,255,0.95));
     font-family: var(--font-sans);
     font-size: 12px;
     letter-spacing: 0.04em;
@@ -876,8 +899,12 @@
 
 <!-- ================ HERO ================ -->
 <section class="hero">
-  <div>
-    <span class="hero-eyebrow">Three-day Scientific Workshop</span>
+  <div class="hero-image">
+    <img src="img/header_IonoHazards2026.jpeg" alt="Ionospheric disturbances from natural hazards — Earth viewed from space showing seismic activity, hurricane and ionospheric coupling" />
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">Three-day Scientific Workshop · First Edition</span>
     <h1>
       Ionospheric<br>
       Disturbances<br>
@@ -887,16 +914,16 @@
       An interdisciplinary meeting on lithosphere–atmosphere–ionosphere coupling, gathering invited speakers from Brazil, France, Peru, and Chile at the National Institute for Space Research.
     </p>
   </div>
-
-  <dl class="hero-facts">
-    <div class="hero-fact"><dt>Dates</dt><dd>19–21 October 2026</dd></div>
-    <div class="hero-fact"><dt>Duration</dt><dd>Three days</dd></div>
-    <div class="hero-fact"><dt>Venue</dt><dd>INPE — São José dos Campos, SP</dd></div>
-    <div class="hero-fact"><dt>Language</dt><dd>English</dd></div>
-    <div class="hero-fact"><dt>Format</dt><dd>Talks &amp; Posters</dd></div>
-    <div class="hero-fact"><dt>Registration</dt><dd><em style="font-style: italic; color: var(--ink-soft);">Opening soon</em></dd></div>
-  </dl>
 </section>
+
+<!-- Facts strip -->
+<dl class="hero-facts-strip">
+  <div class="hero-fact"><dt>Dates</dt><dd>19–21 October 2026</dd></div>
+  <div class="hero-fact"><dt>Duration</dt><dd>Three days</dd></div>
+  <div class="hero-fact"><dt>Venue</dt><dd>INPE — São José dos Campos</dd></div>
+  <div class="hero-fact"><dt>Language</dt><dd>English</dd></div>
+  <div class="hero-fact"><dt>Registration</dt><dd><em style="font-style:italic; color: rgba(255,255,255,0.45);">Opening soon</em></dd></div>
+</dl>
 
 <!-- ================ ABOUT ================ -->
 <section class="column" id="about">
@@ -1423,7 +1450,7 @@
               fill="#f0ece4" stroke="#a1a1aa" stroke-width="0.8" opacity="0.9"/>
 
         <!-- Rivers (Paraíba) -->
-        <path d="M 50 180 Q 120 170 200 180 Q 280 190 360 180" fill="none" stroke="#b45309" stroke-width="0.6" opacity="0.45" stroke-dasharray="3 2"/>
+        <path d="M 50 180 Q 120 170 200 180 Q 280 190 360 180" fill="none" stroke="var(--accent)" stroke-width="0.6" opacity="0.45" stroke-dasharray="3 2"/>
 
         <!-- Roads -->
         <path d="M 100 100 L 200 195 L 320 290" fill="none" stroke="#a1a1aa" stroke-width="0.5" opacity="0.7"/>
@@ -1441,12 +1468,12 @@
 
         <!-- INPE marker -->
         <g>
-          <circle cx="200" cy="195" r="14" fill="none" stroke="#b45309" stroke-width="0.8" opacity="0.4"/>
-          <circle cx="200" cy="195" r="8" fill="none" stroke="#b45309" stroke-width="0.8" opacity="0.65"/>
-          <circle cx="200" cy="195" r="4" fill="#b45309"/>
-          <line x1="200" y1="195" x2="200" y2="155" stroke="#b45309" stroke-width="0.6"/>
-          <text x="205" y="148" font-family="Newsreader, serif" font-size="13" font-style="italic" font-weight="500" fill="#b45309">INPE</text>
-          <text x="205" y="162" font-family="JetBrains Mono, monospace" font-size="8" fill="#b45309" letter-spacing="1.2">SÃO JOSÉ DOS CAMPOS</text>
+          <circle cx="200" cy="195" r="14" fill="none" stroke="var(--accent)" stroke-width="0.8" opacity="0.4"/>
+          <circle cx="200" cy="195" r="8" fill="none" stroke="var(--accent)" stroke-width="0.8" opacity="0.65"/>
+          <circle cx="200" cy="195" r="4" fill="var(--accent)"/>
+          <line x1="200" y1="195" x2="200" y2="155" stroke="var(--accent)" stroke-width="0.6"/>
+          <text x="205" y="148" font-family="Newsreader, serif" font-size="13" font-style="italic" font-weight="500" fill="var(--accent)">INPE</text>
+          <text x="205" y="162" font-family="JetBrains Mono, monospace" font-size="8" fill="var(--accent)" letter-spacing="1.2">SÃO JOSÉ DOS CAMPOS</text>
         </g>
 
         <!-- coordinates -->
