@@ -99,56 +99,46 @@
     font-weight: 500;
   }
 
-  /* ================ HERO ================ */
-  .hero {
-    position: relative;
-    min-height: 580px;
+  /* ================ HERO IMAGE BAND ================ */
+  .hero-image-band {
+    width: 100%;
+    height: clamp(280px, 42vw, 520px);
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    display: block;
+    line-height: 0;
   }
-  .hero-image {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-  .hero-image img {
+  .hero-image-band img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 30%;
+    object-position: center 28%;
     display: block;
   }
-  .hero-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
+
+  /* ================ HERO TITLE BAND ================ */
+  .hero-title-band {
     background: linear-gradient(
-      to bottom,
-      rgba(6, 14, 28, 0.05)  0%,
-      rgba(6, 14, 28, 0.22) 30%,
-      rgba(6, 14, 28, 0.80) 65%,
-      rgba(6, 14, 28, 0.97) 100%
+      135deg,
+      #060e1c 0%,
+      #091828 25%,
+      #0a2840 50%,
+      #082234 75%,
+      #060c1a 100%
     );
-  }
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    padding: 280px clamp(28px, 5vw, 80px) 60px;
+    padding: 64px clamp(28px, 5vw, 80px) 56px;
   }
   .hero-eyebrow {
     font-family: var(--font-sans);
     font-size: 12px;
     letter-spacing: 0.04em;
-    color: rgba(255,255,255,0.72);
-    margin-bottom: 24px;
+    color: rgba(255,255,255,0.60);
+    margin-bottom: 28px;
     display: inline-flex;
     align-items: center;
     gap: 10px;
     padding: 6px 14px 6px 8px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.16);
     border-radius: 100px;
     font-weight: 500;
   }
@@ -160,7 +150,7 @@
     flex-shrink: 0;
     box-shadow: 0 0 10px #30d8f0;
   }
-  .hero h1 {
+  .hero-title-band h1 {
     font-family: var(--font-display);
     font-weight: 400;
     font-size: clamp(48px, 7.5vw, 100px);
@@ -169,7 +159,7 @@
     margin-bottom: 28px;
     color: #ffffff;
   }
-  .hero h1 em {
+  .hero-title-band h1 em {
     font-style: italic;
     font-weight: 300;
     color: #60d8f0;
@@ -179,18 +169,17 @@
     font-style: italic;
     font-weight: 300;
     font-size: clamp(17px, 1.7vw, 22px);
-    color: rgba(255,255,255,0.65);
-    max-width: 620px;
-    line-height: 1.5;
+    color: rgba(255,255,255,0.58);
+    max-width: 680px;
+    line-height: 1.55;
   }
-  /* Facts strip sits below the image, dark bg extending the hero */
+
+  /* ================ FACTS STRIP ================ */
   .hero-facts-strip {
-    position: relative;
-    z-index: 2;
     background: var(--ink);
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 3px solid rgba(255,255,255,0.04);
   }
   @media (max-width: 880px) {
     .hero-facts-strip { grid-template-columns: repeat(2, 1fr); }
@@ -898,22 +887,20 @@
 </header>
 
 <!-- ================ HERO ================ -->
-<section class="hero">
-  <div class="hero-image">
-    <img src="img/header_IonoHazards2026.jpeg" alt="Ionospheric disturbances from natural hazards — Earth viewed from space showing seismic activity, hurricane and ionospheric coupling" />
-  </div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <span class="hero-eyebrow">Three-day Scientific Workshop · First Edition</span>
-    <h1>
-      Ionospheric<br>
-      Disturbances<br>
-      <em>from Natural Hazards.</em>
-    </h1>
-    <p class="hero-sub">
-      An interdisciplinary meeting on lithosphere–atmosphere–ionosphere coupling, gathering invited speakers from Brazil, France, Peru, and Chile at the National Institute for Space Research.
-    </p>
-  </div>
+<div class="hero-image-band">
+  <img src="img/header_IonoHazards2026.jpeg" alt="Ionospheric disturbances from natural hazards — Earth from space showing seismic activity, hurricane and ionospheric coupling" />
+</div>
+
+<section class="hero-title-band">
+  <span class="hero-eyebrow">Three-day Scientific Workshop · First Edition</span>
+  <h1>
+    Ionospheric<br>
+    Disturbances<br>
+    <em>from Natural Hazards.</em>
+  </h1>
+  <p class="hero-sub">
+    An interdisciplinary meeting on lithosphere–atmosphere–ionosphere coupling, gathering invited speakers from Brazil, France, Peru, and Chile at the National Institute for Space Research.
+  </p>
 </section>
 
 <!-- Facts strip -->
@@ -1390,6 +1377,7 @@
 
     Recommended: landscape image, at least 1600×900 px.
   -->
+
   <img src="img/sjc.jpg" alt="São José dos Campos — Vale do Paraíba" />
   <div class="city-photo-placeholder">
     <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" xmlns="http://www.w3.org/2000/svg">
