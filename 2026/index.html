@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IonoHazards · Ionospheric Disturbances from Natural Hazards</title>
+<meta name="description" content="Workshop on Ionospheric Disturbances from Natural Hazards (IonoHazards). Three-day scientific meeting at INPE, São José dos Campos, Brazil." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,300;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper:        #0f1420;
+    --paper-deep:   #151c2e;
+    --paper-edge:   #1c2538;
+    --ink:          #ede7d9;
+    --ink-soft:     #b5af9f;
+    --ink-faint:    #6b6660;
+    --rule:         #2a3550;
+    --rule-light:   #20304a;
+    --accent:       #FE5F55;
+    --accent-soft:  #fe8079;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    scroll-behavior: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.65;
+    font-weight: 400;
+  }
+
+  /* Subtle dark grain texture */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.04 0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>");
+    opacity: 0.6;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  main, header, footer, section { position: relative; z-index: 1; }
+
+  ::selection { background: var(--ink); color: var(--paper); }
+
+  /* ================ MASTHEAD ================ */
+  .masthead {
+    border-bottom: 1px solid var(--rule);
+    padding: 28px clamp(28px, 5vw, 80px);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 32px;
+  }
+  .masthead-mark {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .masthead-mark strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .masthead-edition {
+    text-align: center;
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .masthead-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+
+  /* ================ HERO ================ */
+  .hero {
+    padding: 80px clamp(28px, 5vw, 80px) 60px;
+    border-bottom: 3px double var(--rule);
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: end;
+  }
+  @media (max-width: 880px) {
+    .hero { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    border-top: 1px solid var(--ink);
+    padding-top: 16px;
+    display: inline-block;
+  }
+  .hero h1 {
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: clamp(44px, 6.5vw, 88px);
+    line-height: 1.02;
+    letter-spacing: -0.015em;
+    margin-bottom: 28px;
+    color: var(--ink);
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+  }
+  .hero-sub {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(20px, 2vw, 26px);
+    color: var(--ink-soft);
+    max-width: 620px;
+    line-height: 1.45;
+  }
+
+  .hero-facts {
+    border: 1px solid var(--rule);
+    background: var(--paper-deep);
+    padding: 28px;
+  }
+  .hero-fact {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 12px 0;
+    border-bottom: 1px dotted var(--rule);
+    gap: 16px;
+  }
+  .hero-fact:last-child { border-bottom: none; }
+  .hero-fact dt {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    flex-shrink: 0;
+  }
+  .hero-fact dd {
+    font-family: 'Newsreader', serif;
+    font-size: 16px;
+    color: var(--ink);
+    text-align: right;
+    font-weight: 500;
+  }
+
+  /* ================ SECTION SHELL ================ */
+  section.column {
+    padding: 96px clamp(28px, 5vw, 80px);
+    border-bottom: 1px solid var(--rule);
+  }
+  section.column.tight { padding-top: 64px; padding-bottom: 64px; }
+
+  .section-no {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-no::before {
+    content: "";
+    width: 24px; height: 1px;
+    background: var(--ink-soft);
+  }
+  .section-title {
+    font-family: 'Newsreader', serif;
+    font-weight: 400;
+    font-size: clamp(34px, 4.4vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin-bottom: 28px;
+    max-width: 880px;
+  }
+  .section-title em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+  }
+  .section-deck {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(18px, 1.6vw, 22px);
+    color: var(--ink-soft);
+    max-width: 760px;
+    line-height: 1.55;
+    margin-bottom: 56px;
+  }
+
+  /* ================ ABSTRACT / PROSE ================ */
+  .prose-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+  @media (max-width: 880px) { .prose-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+  .prose p {
+    margin-bottom: 18px;
+    font-size: 17.5px;
+    line-height: 1.75;
+    color: var(--ink);
+  }
+  .prose p:first-child::first-letter {
+    font-family: 'Newsreader', serif;
+    font-size: 4.4em;
+    float: left;
+    line-height: 0.85;
+    margin: 0.05em 0.08em 0 0;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  .sidenote {
+    border-left: 2px solid var(--accent);
+    padding: 4px 0 4px 24px;
+    margin-top: 8px;
+  }
+  .sidenote-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .sidenote h3 {
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: 24px;
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+  .sidenote p {
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+  .sidenote dl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px dotted var(--rule);
+  }
+  .sidenote dl > div {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+  }
+  .sidenote dt { color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.12em; }
+  .sidenote dd { color: var(--ink); font-weight: 500; }
+
+  /* ================ SPEAKERS — focal section ================ */
+  .speakers-section {
+    background: var(--paper-deep);
+  }
+  .speakers-intro {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: end;
+    margin-bottom: 64px;
+  }
+  @media (max-width: 880px) {
+    .speakers-intro { grid-template-columns: 1fr; gap: 32px; }
+  }
+  .speakers-count {
+    font-family: 'Newsreader', serif;
+    text-align: right;
+    color: var(--ink-soft);
+  }
+  .speakers-count .num {
+    font-size: 96px;
+    line-height: 0.9;
+    font-weight: 300;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+  }
+  .speakers-count .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 8px;
+    color: var(--ink-soft);
+  }
+
+  .speakers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--rule);
+    border-left: 1px solid var(--rule);
+  }
+  @media (max-width: 900px) { .speakers-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .speakers-grid { grid-template-columns: 1fr; } }
+
+  .speaker {
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 32px 28px;
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-height: 280px;
+  }
+  .speaker-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .speaker-portrait {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--paper-deep);
+    border: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 22px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .speaker-country {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    border: 1px solid var(--rule);
+    padding: 4px 8px;
+  }
+  .speaker-name {
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.2;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .speaker-name .tba {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ink-faint);
+  }
+  .speaker-affiliation {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+  .speaker-talk {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px dotted var(--rule);
+  }
+  .speaker-talk-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 6px;
+  }
+  .speaker-talk-title {
+    font-family: 'Newsreader', serif;
+    font-size: 14.5px;
+    line-height: 1.45;
+    color: var(--ink);
+  }
+
+  /* ================ SCHEDULE ================ */
+  .schedule {
+    margin-top: 8px;
+  }
+  .schedule-head {
+    display: grid;
+    grid-template-columns: 120px 1fr 1fr 1fr;
+    gap: 0;
+    border-top: 2px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 14px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .schedule-head > div { padding: 0 18px; }
+  .schedule-head .day-label {
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .schedule-head .date-label {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 14px;
+    color: var(--accent);
+  }
+
+  .schedule-day {
+    display: grid;
+    grid-template-columns: 120px 1fr 1fr 1fr;
+    border-bottom: 1px solid var(--rule);
+  }
+  @media (max-width: 880px) {
+    .schedule-head, .schedule-day { grid-template-columns: 80px 1fr; }
+    .schedule-head > div:nth-child(n+3),
+    .schedule-day > div:nth-child(n+3) { display: none; }
+    .schedule-day > div { border-bottom: 1px dotted var(--rule); }
+  }
+
+  .schedule-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-soft);
+    padding: 18px;
+    border-right: 1px solid var(--rule);
+    background: var(--paper-deep);
+  }
+  .schedule-slot {
+    padding: 18px;
+    border-right: 1px solid var(--rule);
+    min-height: 64px;
+  }
+  .schedule-slot:last-child { border-right: none; }
+  .slot-type {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .slot-title {
+    font-family: 'Newsreader', serif;
+    font-size: 15px;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .slot-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .slot-break {
+    background: repeating-linear-gradient(
+      135deg,
+      transparent,
+      transparent 8px,
+      var(--rule) 8px,
+      var(--rule) 9px
+    );
+  }
+  .slot-break .slot-title {
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 14px;
+  }
+  .slot-special {
+    background: var(--paper-deep);
+  }
+  .slot-special .slot-title {
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  .schedule-day-banner {
+    grid-column: 1 / -1;
+    padding: 24px 18px 20px;
+    border-bottom: 1px solid var(--ink);
+    background: var(--paper);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .schedule-day-banner h4 {
+    font-family: 'Newsreader', serif;
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .schedule-day-banner h4 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+  }
+  .schedule-day-banner .day-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* ================ THEMES (compact) ================ */
+  .themes-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+  @media (max-width: 880px) { .themes-list { grid-template-columns: 1fr; } }
+
+  .theme-item {
+    padding: 36px 32px;
+    border-right: 1px solid var(--rule);
+  }
+  .theme-item:last-child { border-right: none; }
+  @media (max-width: 880px) {
+    .theme-item { border-right: none; border-bottom: 1px solid var(--rule); }
+    .theme-item:last-child { border-bottom: none; }
+  }
+  .theme-roman {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--accent);
+    margin-bottom: 14px;
+    font-weight: 400;
+  }
+  .theme-item h3 {
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: 22px;
+    margin-bottom: 14px;
+    line-height: 1.25;
+    letter-spacing: -0.005em;
+  }
+  .theme-item p {
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .theme-keywords {
+    margin-top: 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+  }
+
+  /* ================ VENUE ================ */
+  .venue-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  @media (max-width: 880px) { .venue-grid { grid-template-columns: 1fr; } }
+
+  .venue-info dl {
+    display: grid;
+    gap: 18px;
+  }
+  .venue-info dl > div {
+    padding: 16px 0;
+    border-bottom: 1px dotted var(--rule);
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 24px;
+  }
+  .venue-info dt {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding-top: 4px;
+  }
+  .venue-info dd {
+    font-family: 'Newsreader', serif;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .venue-info dd em {
+    font-style: italic;
+    color: var(--ink-soft);
+    display: block;
+    font-size: 14.5px;
+    margin-top: 4px;
+  }
+
+  .venue-map {
+    border: 1px solid var(--rule);
+    background: var(--paper-deep);
+    padding: 36px;
+    aspect-ratio: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .venue-map svg { flex: 1; width: 100%; height: 100%; }
+  .venue-map-caption {
+    margin-top: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-align: center;
+    border-top: 1px dotted var(--rule);
+    padding-top: 14px;
+  }
+
+  /* ================ ORGANIZATION ================ */
+  .org-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+  @media (max-width: 800px) { .org-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .org-item {
+    padding: 28px 24px;
+    border-right: 1px solid var(--rule);
+    text-align: center;
+  }
+  .org-item:last-child { border-right: none; }
+  @media (max-width: 800px) {
+    .org-item { border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+    .org-item:nth-child(2n) { border-right: none; }
+    .org-item:nth-last-child(-n+2) { border-bottom: none; }
+  }
+  .org-acronym {
+    font-family: 'Newsreader', serif;
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+  .org-name {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+    margin-bottom: 12px;
+  }
+  .org-country {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  /* ================ FOOTER ================ */
+  footer {
+    padding: 64px clamp(28px, 5vw, 80px) 32px;
+    border-top: 3px double var(--rule);
+    background: var(--paper-deep);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 56px;
+  }
+  @media (max-width: 800px) { .footer-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+  .footer-mark {
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+  .footer-mark em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent);
+  }
+  .footer-grid p {
+    color: var(--ink-soft);
+    font-size: 15px;
+    max-width: 460px;
+    line-height: 1.65;
+  }
+  .footer-col h5 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .footer-col p, .footer-col a {
+    display: block;
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+  .footer-col a { border-bottom: 1px dotted var(--rule); padding-bottom: 2px; }
+
+  .colophon {
+    border-top: 1px solid var(--rule);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  /* ================ UTILITY ================ */
+  .rule-ornament {
+    width: 60px;
+    height: 1px;
+    background: var(--ink);
+    margin: 0 0 24px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ================ MASTHEAD ================ -->
+<header class="masthead">
+  <div class="masthead-mark"><strong>Workshop · </strong>IonoHazards</div>
+  <div class="masthead-edition">— First Edition · MMXXVI —</div>
+  <div class="masthead-meta">INPE / SJC · Brazil</div>
+</header>
+
+<!-- ================ HERO ================ -->
+<section class="hero">
+  <div>
+    <span class="hero-eyebrow">Three-day Scientific Workshop</span>
+    <h1>
+      Ionospheric<br>
+      Disturbances<br>
+      <em>from Natural Hazards.</em>
+    </h1>
+    <p class="hero-sub">
+      An interdisciplinary meeting on lithosphere–atmosphere–ionosphere coupling, gathering invited speakers from Brazil, France, Peru, and Chile at the National Institute for Space Research.
+    </p>
+  </div>
+
+  <dl class="hero-facts">
+    <div class="hero-fact"><dt>Dates</dt><dd>19–21 October 2026</dd></div>
+    <div class="hero-fact"><dt>Duration</dt><dd>Three days</dd></div>
+    <div class="hero-fact"><dt>Venue</dt><dd>INPE — São José dos Campos, SP</dd></div>
+    <div class="hero-fact"><dt>Language</dt><dd>English</dd></div>
+    <div class="hero-fact"><dt>Format</dt><dd>Talks &amp; Posters</dd></div>
+    <div class="hero-fact"><dt>Registration</dt><dd><em style="font-style: italic; color: var(--ink-soft);">Opening soon</em></dd></div>
+  </dl>
+</section>
+
+<!-- ================ ABOUT ================ -->
+<section class="column" id="about">
+  <div class="section-no">§ I — Scientific Rationale</div>
+  <h2 class="section-title">When the Earth trembles, <em>the ionosphere listens.</em></h2>
+  <p class="section-deck">
+    Earthquakes, tsunamis, volcanic eruptions and severe atmospheric events generate disturbances that propagate upward and can be detected hundreds of kilometres above the surface. <em>IonoHazards</em> brings together the scientists who read those signatures.
+  </p>
+
+  <div class="prose-grid">
+    <div class="prose">
+      <p>
+        Recent advances in observational capabilities — including GNSS-based total electron content (TEC) measurements, ionosondes, incoherent scatter radars and dedicated satellite missions — have substantially enhanced our ability to detect and characterise ionospheric perturbations associated with natural hazards. These signals, often referred to as co-seismic or co-eruptive ionospheric disturbances, provide unique insight into the dynamics of lithosphere–atmosphere–ionosphere coupling.
+      </p>
+      <p>
+        At the same time, extreme weather events such as tropical cyclones, deep convective systems and atmospheric gravity waves induce their own variability in the upper atmosphere, complicating the identification and interpretation of signals tied to solid-Earth processes. The workshop is designed to confront precisely this interpretive frontier.
+      </p>
+      <p>
+        Bringing together specialists in seismology, ionospheric physics, atmospheric science and space weather, IonoHazards seeks to consolidate the role of South America — and Brazil in particular — as a leading region for research on geophysical coupling and natural hazard monitoring.
+      </p>
+    </div>
+
+    <aside class="sidenote">
+      <div class="sidenote-label">Associated Project</div>
+      <h3>IONO-DIET</h3>
+      <p>
+        Ionospheric Detection and Imaging of Earthquakes and Tsunamis in Near-Real-Time — an international collaboration between Brazilian and French institutions, funded by FAPESP, dedicated to near-real-time ionospheric imaging of seismic and tsunamigenic sources.
+      </p>
+      <dl>
+        <div><dt>Process</dt><dd>22/03502-6</dd></div>
+        <div><dt>Funding</dt><dd>FAPESP</dd></div>
+        <div><dt>Lead Institutions</dt><dd>INPE × IPGP</dd></div>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<!-- ================ SPEAKERS — focal point ================ -->
+<section class="column speakers-section" id="speakers">
+  <div class="section-no">§ II — Invited Speakers</div>
+
+  <div class="speakers-intro">
+    <div>
+      <h2 class="section-title">A roster <em>across continents</em><br>and disciplines.</h2>
+      <p class="section-deck">
+        The scientific programme is built around eighteen invited talks delivered by leading researchers from Brazilian, French, Peruvian and Chilean institutions. Speakers will address the full chain — from source mechanisms in the solid Earth to detection in the ionosphere.
+      </p>
+    </div>
+    <div class="speakers-count">
+      <div class="num">18</div>
+      <div class="lbl">Invited Talks · 4 Countries</div>
+    </div>
+  </div>
+
+  <div class="speakers-grid">
+
+    <article class="speaker">
+      <div class="speaker-head">
+        <div class="speaker-portrait">i.</div>
+        <span class="speaker-country">FR · Paris</span>
+      </div>
+      <div>
+        <div class="speaker-name"><span class="tba">Speaker to be confirmed</span></div>
+        <div class="speaker-affiliation">Institut de Physique du Globe de Paris</div>
+      </div>
+      <div class="speaker-talk">
+        <div class="speaker-talk-label">Topic</div>
+        <div class="speaker-talk-title">Near-real-time ionospheric imaging of seismic sources</div>
+      </div>
+    </article>
+
+    <article class="speaker">
+      <div class="speaker-head">
+        <div class="speaker-portrait">ii.</div>
+        <span class="speaker-country">FR · Paris</span>
+      </div>
+      <div>
+        <div class="speaker-name"><span class="tba">Speaker to be confirmed</span></div>
+        <div class="speaker-affiliation">Institut de Physique du Globe de Paris</div>
+      </div>
+      <div class="speaker-talk">
+        <div class="speaker-talk-label">Topic</div>
+        <div class="speaker-talk-title">Acoustic and gravity wave signatures of tsunamis</div>
+      </div>
+    </article>
+
+    <article class="speaker">
+      <div class="speaker-head">
+        <div class="speaker-portrait">iii.</div>
+        <span class="speaker-country">PE · Lima</span>
+      </div>
+      <div>
+        <div class="speaker-name"><span class="tba">Speaker to be confirmed</span></div>
+        <div class="speaker-affiliation">Instituto Geofísico del Perú</div>
+      </div>
+      <div class="speaker-talk">
+        <div class="speaker-talk-label">Topic</div>
+        <div class="speaker-talk-title">Equatorial ionospheric response to Andean seismicity</div>
+      </div>
+    </article>
+
+    <article class="speaker">
+      <div class="speaker-head">
+        <div class="speaker-portrait">iv.</div>
+        <span class="speaker-country">CL · Santiago</span>
+      </div>
+      <div>
+        <div class="speaker-name"><span class="tba">Speaker to be confirmed</span></div>
+        <div class="speaker-affiliation">Centro Sismológico Nacional · Universidad de Chile</div>
+      </div>
+      <div class="speaker-talk">
+        <div class="speaker-talk-label">Topic</div>
+        <div class="speaker-talk-title">Subduction-zone earthquakes and ionospheric coupling</div>
+      </div>
+    </article>
+
+    <article class="speaker">
+      <div class="speaker-head">
+        <div class="speaker-portrait">v.</div>
+        <span class="speaker-country">BR · SJC</span>
+      </div>
+      <div>
+        <div class="speaker-name"><span class="tba">Speaker to be confirmed</span></div>
+        <div class="speaker-affiliation">Instituto Nacional de Pesquisas Espaciais</div>
+      </div>
+      <div class="speaker-talk">
+        <div class="speaker-talk-label">Topic</div>
+        <div class="speaker-talk-title">GNSS-TEC observations over the South American sector</div>
+      </div>
+    </article>
+
+    <article class="speaker">
+      <div class="speaker-head">
+        <div class="speaker-portrait">vi.</div>
+        <span class="speaker-country">BR · SJC</span>
+      </div>
+      <div>
+        <div class="speaker-name"><span class="tba">Speaker to be confirmed</span></div>
+        <div class="speaker-affiliation">Instituto Nacional de Pesquisas Espaciais</div>
+      </div>
+      <div class="speaker-talk">
+        <div class="speaker-talk-label">Topic</div>
+        <div class="speaker-talk-title">Equatorial plasma bubbles and background variability</div>
+      </div>
+    </article>
+
+    <article class="speaker">
+      <div class="speaker-head">
+        <div class="speaker-portrait">vii.</div>
+        <span class="speaker-country">BR · São Paulo</span>
+      </div>
+      <div>
+        <div class="speaker-name"><span class="tba">Speaker to be confirmed</span></div>
+        <div class="speaker-affiliation">Universidade de São Paulo</div>
+      </div>
+      <div class="speaker-talk">
+        <div class="speaker-talk-label">Topic</div>
+        <div class="speaker-talk-title">Atmospheric gravity waves from convective systems</div>
+      </div>
+    </article>
+
+    <article class="speaker">
+      <div class="speaker-head">
+        <div class="speaker-portrait">viii.</div>
+        <span class="speaker-country">BR · Brasília</span>
+      </div>
+      <div>
+        <div class="speaker-name"><span class="tba">Speaker to be confirmed</span></div>
+        <div class="speaker-affiliation">Universidade de Brasília</div>
+      </div>
+      <div class="speaker-talk">
+        <div class="speaker-talk-label">Topic</div>
+        <div class="speaker-talk-title">Seismological perspectives on lithospheric forcing</div>
+      </div>
+    </article>
+
+    <article class="speaker">
+      <div class="speaker-head">
+        <div class="speaker-portrait">ix.</div>
+        <span class="speaker-country">BR · SJC</span>
+      </div>
+      <div>
+        <div class="speaker-name"><span class="tba">Speaker to be confirmed</span></div>
+        <div class="speaker-affiliation">Universidade do Vale do Paraíba</div>
+      </div>
+      <div class="speaker-talk">
+        <div class="speaker-talk-label">Topic</div>
+        <div class="speaker-talk-title">Ionospheric remote sensing &amp; ground-based instrumentation</div>
+      </div>
+    </article>
+
+    <article class="speaker">
+      <div class="speaker-head">
+        <div class="speaker-portrait">x.</div>
+        <span class="speaker-country">FR</span>
+      </div>
+      <div>
+        <div class="speaker-name"><span class="tba">Speaker to be confirmed</span></div>
+        <div class="speaker-affiliation">French partner institution</div>
+      </div>
+      <div class="speaker-talk">
+        <div class="speaker-talk-label">Topic</div>
+        <div class="speaker-talk-title">Machine learning for ionospheric signal identification</div>
+      </div>
+    </article>
+
+    <article class="speaker">
+      <div class="speaker-head">
+        <div class="speaker-portrait">xi.</div>
+        <span class="speaker-country">BR · SJC</span>
+      </div>
+      <div>
+        <div class="speaker-name"><span class="tba">Speaker to be confirmed</span></div>
+        <div class="speaker-affiliation">Instituto Nacional de Pesquisas Espaciais</div>
+      </div>
+      <div class="speaker-talk">
+        <div class="speaker-talk-label">Topic</div>
+        <div class="speaker-talk-title">Severe weather and the ionospheric response</div>
+      </div>
+    </article>
+
+    <article class="speaker">
+      <div class="speaker-head">
+        <div class="speaker-portrait">xii.</div>
+        <span class="speaker-country">PE / CL</span>
+      </div>
+      <div>
+        <div class="speaker-name"><span class="tba">Speaker to be confirmed</span></div>
+        <div class="speaker-affiliation">Andean partner institution</div>
+      </div>
+      <div class="speaker-talk">
+        <div class="speaker-talk-label">Topic</div>
+        <div class="speaker-talk-title">Multi-parameter early warning systems</div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ================ SCHEDULE ================ -->
+<section class="column" id="programme">
+  <div class="section-no">§ III — Programme</div>
+  <h2 class="section-title">Three days. <em>Three sessions of three.</em></h2>
+  <p class="section-deck">
+    Each day is structured around three morning talks and three afternoon talks, separated by coffee breaks and a midday recess. A dedicated poster session takes place on the second day.
+  </p>
+
+  <div class="schedule">
+
+    <!-- Schedule header (column legends) -->
+    <div class="schedule-head">
+      <div class="day-label">Time</div>
+      <div class="date-label">Day 1 — Monday, Oct 19</div>
+      <div class="date-label">Day 2 — Tuesday, Oct 20</div>
+      <div class="date-label">Day 3 — Wednesday, Oct 21</div>
+    </div>
+
+    <!-- Day banner row -->
+    <div class="schedule-day-banner" style="display:none"></div>
+
+    <!-- 09:00 -->
+    <div class="schedule-day">
+      <div class="schedule-time">09:00 — 09:30</div>
+      <div class="schedule-slot slot-special">
+        <div class="slot-type">Opening</div>
+        <div class="slot-title"><em>Welcome &amp; Workshop opening</em></div>
+      </div>
+      <div class="schedule-slot">
+        <div class="slot-type">Talk · Morning I</div>
+        <div class="slot-title">Plenary lecture — Speaker vii</div>
+      </div>
+      <div class="schedule-slot">
+        <div class="slot-type">Talk · Morning I</div>
+        <div class="slot-title">Plenary lecture — Speaker xiii</div>
+      </div>
+    </div>
+
+    <!-- 09:30 -->
+    <div class="schedule-day">
+      <div class="schedule-time">09:30 — 10:30</div>
+      <div class="schedule-slot">
+        <div class="slot-type">Talk · Morning I</div>
+        <div class="slot-title">Plenary lecture — Speaker i</div>
+      </div>
+      <div class="schedule-slot">
+        <div class="slot-type">Talk · Morning II</div>
+        <div class="slot-title">Plenary lecture — Speaker viii</div>
+      </div>
+      <div class="schedule-slot">
+        <div class="slot-type">Talk · Morning II</div>
+        <div class="slot-title">Plenary lecture — Speaker xiv</div>
+      </div>
+    </div>
+
+    <!-- 10:30 coffee -->
+    <div class="schedule-day">
+      <div class="schedule-time">10:30 — 11:00</div>
+      <div class="schedule-slot slot-break">
+        <div class="slot-title">Coffee break</div>
+      </div>
+      <div class="schedule-slot slot-break">
+        <div class="slot-title">Coffee break</div>
+      </div>
+      <div class="schedule-slot slot-break">
+        <div class="slot-title">Coffee break</div>
+      </div>
+    </div>
+
+    <!-- 11:00 -->
+    <div class="schedule-day">
+      <div class="schedule-time">11:00 — 12:00</div>
+      <div class="schedule-slot">
+        <div class="slot-type">Talk · Morning II</div>
+        <div class="slot-title">Plenary lecture — Speaker ii</div>
+      </div>
+      <div class="schedule-slot">
+        <div class="slot-type">Talk · Morning III</div>
+        <div class="slot-title">Plenary lecture — Speaker ix</div>
+      </div>
+      <div class="schedule-slot">
+        <div class="slot-type">Talk · Morning III</div>
+        <div class="slot-title">Plenary lecture — Speaker xv</div>
+      </div>
+    </div>
+
+    <!-- 12:00 -->
+    <div class="schedule-day">
+      <div class="schedule-time">12:00 — 13:00</div>
+      <div class="schedule-slot">
+        <div class="slot-type">Talk · Morning III</div>
+        <div class="slot-title">Plenary lecture — Speaker iii</div>
+      </div>
+      <div class="schedule-slot slot-break">
+        <div class="slot-title">Lunch break</div>
+      </div>
+      <div class="schedule-slot slot-break">
+        <div class="slot-title">Lunch break</div>
+      </div>
+    </div>
+
+    <!-- 13:00 lunch -->
+    <div class="schedule-day">
+      <div class="schedule-time">13:00 — 14:00</div>
+      <div class="schedule-slot slot-break">
+        <div class="slot-title">Lunch break</div>
+      </div>
+      <div class="schedule-slot">
+        <div class="slot-type">Talk · Afternoon I</div>
+        <div class="slot-title">Plenary lecture — Speaker x</div>
+      </div>
+      <div class="schedule-slot">
+        <div class="slot-type">Talk · Afternoon I</div>
+        <div class="slot-title">Plenary lecture — Speaker xvi</div>
+      </div>
+    </div>
+
+    <!-- 14:00 -->
+    <div class="schedule-day">
+      <div class="schedule-time">14:00 — 15:00</div>
+      <div class="schedule-slot">
+        <div class="slot-type">Talk · Afternoon I</div>
+        <div class="slot-title">Plenary lecture — Speaker iv</div>
+      </div>
+      <div class="schedule-slot">
+        <div class="slot-type">Talk · Afternoon II</div>
+        <div class="slot-title">Plenary lecture — Speaker xi</div>
+      </div>
+      <div class="schedule-slot">
+        <div class="slot-type">Talk · Afternoon II</div>
+        <div class="slot-title">Plenary lecture — Speaker xvii</div>
+      </div>
+    </div>
+
+    <!-- 15:00 -->
+    <div class="schedule-day">
+      <div class="schedule-time">15:00 — 16:00</div>
+      <div class="schedule-slot">
+        <div class="slot-type">Talk · Afternoon II</div>
+        <div class="slot-title">Plenary lecture — Speaker v</div>
+      </div>
+      <div class="schedule-slot slot-break">
+        <div class="slot-title">Coffee break</div>
+      </div>
+      <div class="schedule-slot">
+        <div class="slot-type">Talk · Afternoon III</div>
+        <div class="slot-title">Plenary lecture — Speaker xviii</div>
+      </div>
+    </div>
+
+    <!-- 16:00 coffee/talk -->
+    <div class="schedule-day">
+      <div class="schedule-time">16:00 — 17:00</div>
+      <div class="schedule-slot slot-break">
+        <div class="slot-title">Coffee break</div>
+      </div>
+      <div class="schedule-slot">
+        <div class="slot-type">Talk · Afternoon III</div>
+        <div class="slot-title">Plenary lecture — Speaker xii</div>
+      </div>
+      <div class="schedule-slot slot-special">
+        <div class="slot-type">Closing</div>
+        <div class="slot-title"><em>Discussion panel &amp; closing remarks</em></div>
+      </div>
+    </div>
+
+    <!-- 17:00 last talk / poster session -->
+    <div class="schedule-day">
+      <div class="schedule-time">17:00 — 19:00</div>
+      <div class="schedule-slot">
+        <div class="slot-type">Talk · Afternoon III</div>
+        <div class="slot-title">Plenary lecture — Speaker vi</div>
+      </div>
+      <div class="schedule-slot slot-special">
+        <div class="slot-type">Special Session</div>
+        <div class="slot-title"><em>Poster session &amp; reception</em></div>
+      </div>
+      <div class="schedule-slot" style="background: var(--rule-light); opacity: 0.5;">
+        <div class="slot-type">— end of day —</div>
+      </div>
+    </div>
+
+  </div>
+
+  <p style="margin-top: 32px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); text-align: right;">
+    † Specific dates, talk titles and speaker assignments to be finalised closer to the event.
+  </p>
+</section>
+
+<!-- ================ THEMES ================ -->
+<section class="column tight" id="themes">
+  <div class="section-no">§ IV — Thematic Scope</div>
+  <h2 class="section-title">Three domains, <em>one coupled Earth.</em></h2>
+
+  <div class="themes-list">
+    <div class="theme-item">
+      <div class="theme-roman">i.</div>
+      <h3>Ionospheric Physics &amp; Space Sciences</h3>
+      <p>Detection of ionospheric perturbations, imaging of seismic sources, physical modelling, and the application of machine learning to signal identification and characterisation.</p>
+      <div class="theme-keywords">GNSS · TEC · Ionosondes · Space Weather</div>
+    </div>
+    <div class="theme-item">
+      <div class="theme-roman">ii.</div>
+      <h3>Atmospheric Sciences &amp; Meteorology</h3>
+      <p>Severe atmospheric phenomena — tropical cyclones, deep convective systems and gravity waves — as drivers of ionospheric variability through vertical coupling.</p>
+      <div class="theme-keywords">Gravity Waves · Convection · Vertical Coupling</div>
+    </div>
+    <div class="theme-item">
+      <div class="theme-roman">iii.</div>
+      <h3>Seismology &amp; Natural Hazards</h3>
+      <p>Earthquakes, tsunamis and volcanic eruptions as generators of ionospheric signatures, and their potential integration into multi-parameter early warning systems.</p>
+      <div class="theme-keywords">Co-seismic · Tsunami · Early Warning</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================ VENUE ================ -->
+<section class="column" id="venue">
+  <div class="section-no">§ V — Venue</div>
+  <h2 class="section-title">Hosted at <em>INPE,</em><br>São José dos Campos.</h2>
+
+  <div class="venue-grid">
+    <div class="venue-info">
+      <dl>
+        <div>
+          <dt>Institution</dt>
+          <dd>Instituto Nacional de Pesquisas Espaciais <em>National Institute for Space Research</em></dd>
+        </div>
+        <div>
+          <dt>Address</dt>
+          <dd>Av. dos Astronautas, 1758 — Jd. da Granja <em>São José dos Campos · SP · 12227-010 · Brazil</em></dd>
+        </div>
+        <div>
+          <dt>Region</dt>
+          <dd>Vale do Paraíba <em>Approximately 100 km from São Paulo (SP) and 320 km from Rio de Janeiro (RJ).</em></dd>
+        </div>
+        <div>
+          <dt>Nearest Airport</dt>
+          <dd>SJK · São José dos Campos <em>SBSP (Congonhas) and GRU (Guarulhos) also serve the venue via shuttle/road.</em></dd>
+        </div>
+        <div>
+          <dt>Recommended Stay</dt>
+          <dd>Hotels in central São José dos Campos <em>List of recommended accommodations to be circulated upon registration.</em></dd>
+        </div>
+      </dl>
+    </div>
+
+    <figure class="venue-map" aria-hidden="true">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <!-- subtle grid -->
+        <defs>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#2a3550" stroke-width="0.3" opacity="0.9"/>
+          </pattern>
+        </defs>
+        <rect width="400" height="400" fill="url(#grid)"/>
+
+        <!-- coastline / state outline (stylised SP state shape) -->
+        <path d="M 30 240 Q 70 230 110 245 Q 150 255 180 240 Q 210 220 250 230 Q 290 240 330 220 Q 360 200 380 220 L 380 380 Q 320 370 270 380 Q 220 385 180 375 Q 130 370 80 380 Q 50 385 30 370 Z"
+              fill="#1c2538" stroke="#3a5080" stroke-width="0.8" opacity="0.8"/>
+
+        <!-- Rivers (Paraíba) -->
+        <path d="M 50 180 Q 120 170 200 180 Q 280 190 360 180" fill="none" stroke="#FE5F55" stroke-width="0.6" opacity="0.5" stroke-dasharray="3 2"/>
+
+        <!-- Roads -->
+        <path d="M 100 100 L 200 195 L 320 290" fill="none" stroke="#4a6080" stroke-width="0.5" opacity="0.6"/>
+        <path d="M 50 280 L 380 280" fill="none" stroke="#4a6080" stroke-width="0.5" opacity="0.6"/>
+
+        <!-- Cities -->
+        <g>
+          <circle cx="120" cy="240" r="3" fill="#b5af9f"/>
+          <text x="128" y="244" font-family="JetBrains Mono, monospace" font-size="9" fill="#b5af9f">São Paulo</text>
+        </g>
+
+        <g>
+          <circle cx="340" cy="200" r="3" fill="#b5af9f"/>
+          <text x="290" y="194" font-family="JetBrains Mono, monospace" font-size="9" fill="#b5af9f">Rio de Janeiro</text>
+        </g>
+
+        <!-- INPE marker -->
+        <g>
+          <circle cx="200" cy="195" r="14" fill="none" stroke="#FE5F55" stroke-width="0.8" opacity="0.5"/>
+          <circle cx="200" cy="195" r="8" fill="none" stroke="#FE5F55" stroke-width="0.8" opacity="0.7"/>
+          <circle cx="200" cy="195" r="4" fill="#FE5F55"/>
+          <line x1="200" y1="195" x2="200" y2="155" stroke="#FE5F55" stroke-width="0.6"/>
+          <text x="205" y="148" font-family="Newsreader, serif" font-size="13" font-style="italic" font-weight="500" fill="#FE5F55">INPE</text>
+          <text x="205" y="162" font-family="JetBrains Mono, monospace" font-size="8" fill="#FE5F55" letter-spacing="1.2">SÃO JOSÉ DOS CAMPOS</text>
+        </g>
+
+        <!-- coordinates -->
+        <text x="20" y="20" font-family="JetBrains Mono, monospace" font-size="8" fill="#6b6660" letter-spacing="1">23°12′ S · 45°51′ W</text>
+        <text x="380" y="395" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="8" fill="#6b6660" letter-spacing="1">scale ~ 100 km</text>
+
+        <!-- compass -->
+        <g transform="translate(360, 50)">
+          <circle r="14" fill="none" stroke="#2a3550" stroke-width="0.8"/>
+          <line x1="0" y1="-12" x2="0" y2="12" stroke="#4a6080" stroke-width="0.5"/>
+          <line x1="-12" y1="0" x2="12" y2="0" stroke="#4a6080" stroke-width="0.5"/>
+          <text x="0" y="-16" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#ede7d9">N</text>
+        </g>
+      </svg>
+      <figcaption class="venue-map-caption">Vale do Paraíba · São Paulo State · Brazil</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================ ORGANIZATION ================ -->
+<section class="column tight" id="organization">
+  <div class="section-no">§ VI — Organising Institutions</div>
+  <h2 class="section-title">A network <em>across four countries.</em></h2>
+
+  <div class="org-grid">
+    <div class="org-item">
+      <div class="org-acronym">INPE</div>
+      <div class="org-name">Instituto Nacional de Pesquisas Espaciais</div>
+      <div class="org-country">Brazil · SJC</div>
+    </div>
+    <div class="org-item">
+      <div class="org-acronym">IPGP</div>
+      <div class="org-name">Institut de Physique du Globe de Paris</div>
+      <div class="org-country">France</div>
+    </div>
+    <div class="org-item">
+      <div class="org-acronym">USP</div>
+      <div class="org-name">Universidade de São Paulo</div>
+      <div class="org-country">Brazil · SP</div>
+    </div>
+    <div class="org-item">
+      <div class="org-acronym">UnB</div>
+      <div class="org-name">Universidade de Brasília</div>
+      <div class="org-country">Brazil · DF</div>
+    </div>
+    <div class="org-item">
+      <div class="org-acronym">Univap</div>
+      <div class="org-name">Universidade do Vale do Paraíba</div>
+      <div class="org-country">Brazil · SJC</div>
+    </div>
+    <div class="org-item">
+      <div class="org-acronym">IGP</div>
+      <div class="org-name">Instituto Geofísico del Perú</div>
+      <div class="org-country">Peru · Lima</div>
+    </div>
+    <div class="org-item">
+      <div class="org-acronym">CSN</div>
+      <div class="org-name">Centro Sismológico Nacional · U. de Chile</div>
+      <div class="org-country">Chile · Santiago</div>
+    </div>
+    <div class="org-item">
+      <div class="org-acronym" style="font-style: italic; font-weight: 400; color: var(--accent);">FAPESP</div>
+      <div class="org-name">Fundação de Amparo à Pesquisa do Estado de São Paulo</div>
+      <div class="org-country">Funding Agency</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================ FOOTER ================ -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-mark">Ionospheric Disturbances<br><em>from Natural Hazards.</em></div>
+      <p>
+        IonoHazards · First edition. A scientific workshop hosted at INPE, São José dos Campos. Associated with the IONO-DIET project, FAPESP process 22/03502-6.
+      </p>
+    </div>
+    <div class="footer-col">
+      <h5>Sections</h5>
+      <a href="#about">§ I · Rationale</a>
+      <a href="#speakers">§ II · Invited Speakers</a>
+      <a href="#programme">§ III · Programme</a>
+      <a href="#themes">§ IV · Thematic Scope</a>
+      <a href="#venue">§ V · Venue</a>
+      <a href="#organization">§ VI · Organisation</a>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <p>Instituto Nacional de Pesquisas Espaciais</p>
+      <p>São José dos Campos, SP · Brazil</p>
+      <p style="margin-top: 12px; font-style: italic;">Registration details to be announced.</p>
+    </div>
+  </div>
+
+  <div class="colophon">
+    <span>© MMXXVI · IonoHazards Workshop Committee</span>
+    <span>Set in Newsreader &amp; JetBrains Mono</span>
+  </div>
+</footer>
+
+</body>
+</html>
