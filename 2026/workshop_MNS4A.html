@@ -80,6 +80,20 @@
 
   .nav-links a:hover, .nav-links a.active { color: var(--electric); }
 
+  .nav-links a.nav-submit {
+    color: var(--aurora);
+    border: 1px solid rgba(168, 237, 204, 0.25);
+    border-radius: 2px;
+    padding: 3px 10px;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+  }
+
+  .nav-links a.nav-submit:hover {
+    color: var(--navy);
+    background: var(--aurora);
+    border-color: var(--aurora);
+  }
+
   .nav-date {
     font-family: 'DM Mono', monospace;
     font-size: 11px;
@@ -240,7 +254,7 @@
     font-size: 20px;
     font-weight: 400;
     font-style: italic;
-    color: var(--electric);
+    color: var(--ink-soft);
     margin-bottom: 24px;
   }
 
@@ -770,6 +784,17 @@
     background: rgba(240,192,96,0.07);
   }
 
+  .slot.invited-slot {
+    min-height: 111px;
+    align-items: center;
+    background: rgba(240,192,96,0.03);
+    border-left: 2px solid rgba(240,192,96,0.25);
+  }
+
+  .slot.invited-slot:hover { background: rgba(240,192,96,0.06); }
+
+  .slot.invited-slot .slot-time { color: rgba(240,192,96,0.7); }
+
   .type-badge.talk {
     color: var(--electric);
     border: 1px solid var(--border-strong);
@@ -892,6 +917,391 @@
     color: var(--muted);
     margin-top: 2px;
   }
+
+  /* ── SUBMIT ABSTRACT BUTTON ── */
+  .btn-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--navy);
+    background: linear-gradient(135deg, var(--aurora) 0%, var(--electric) 100%);
+    border: none;
+    border-radius: 4px;
+    padding: 13px 28px;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.18s, box-shadow 0.18s;
+    box-shadow:
+      0 0 0 1px rgba(168, 237, 204, 0.5),
+      0 4px 20px rgba(79, 195, 247, 0.35),
+      0 0 40px rgba(168, 237, 204, 0.15);
+  }
+
+  .btn-submit::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 60%);
+    pointer-events: none;
+  }
+
+  .btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 0 0 1px rgba(168, 237, 204, 0.7),
+      0 8px 28px rgba(79, 195, 247, 0.5),
+      0 0 60px rgba(168, 237, 204, 0.25);
+  }
+
+  .btn-submit:active { transform: translateY(0); }
+
+  .btn-submit svg { flex-shrink: 0; }
+
+  /* Header CTA wrapper */
+  .header-cta {
+    margin-top: 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .header-cta-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+    display: block;
+    margin-top: 6px;
+  }
+
+  /* Inline section CTA */
+  .section-cta {
+    margin-top: 28px;
+    background: linear-gradient(135deg, rgba(168,237,204,0.05) 0%, rgba(79,195,247,0.03) 100%);
+    border: 1px solid rgba(168,237,204,0.2);
+    border-left: 3px solid var(--aurora);
+    border-radius: 0 4px 4px 0;
+    overflow: hidden;
+  }
+
+  .scta-header {
+    padding: 28px 32px 24px;
+  }
+
+  .scta-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+
+  .scta-heading .section-label {
+    margin-bottom: 0;
+  }
+
+  .scta-heading strong {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.15;
+  }
+
+  .scta-desc {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .scta-divider {
+    height: 1px;
+    background: rgba(168, 237, 204, 0.12);
+    margin: 0 32px;
+  }
+
+  .scta-footer {
+    padding: 20px 32px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .scta-conditions { flex: 1; min-width: 240px; }
+
+  .scta-conditions-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+  }
+
+  .scta-notice {
+    margin-top: 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 12.5px;
+    color: rgba(240,192,96,0.9);
+    line-height: 1.5;
+    font-weight: 500;
+    background: rgba(240,192,96,0.06);
+    border: 1px solid rgba(240,192,96,0.3);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 3px 3px 0;
+    padding: 10px 14px;
+  }
+
+  /* Floating sticky bar */
+  .sticky-cta {
+    position: fixed;
+    bottom: 28px;
+    right: 32px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--navy-mid);
+    border: 1px solid rgba(168,237,204,0.3);
+    border-radius: 6px;
+    padding: 10px 10px 10px 18px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(168,237,204,0.1);
+    animation: floatIn 0.5s ease 0.8s both;
+  }
+
+  @keyframes floatIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .sticky-cta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--aurora);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .btn-submit.btn-sm {
+    font-size: 12px;
+    padding: 9px 18px;
+    gap: 7px;
+  }
+
+  /* Ghost / discrete variant — scrolls to section */
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--aurora);
+    background: rgba(168, 237, 204, 0.06);
+    border: 1px solid rgba(168, 237, 204, 0.25);
+    border-radius: 4px;
+    padding: 9px 20px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.18s, border-color 0.18s, color 0.18s;
+  }
+
+  .btn-ghost:hover {
+    background: rgba(168, 237, 204, 0.12);
+    border-color: rgba(168, 237, 204, 0.45);
+    color: #d8f8ec;
+  }
+
+  .btn-ghost.btn-ghost-sm {
+    font-size: 12px;
+    padding: 7px 14px;
+    gap: 6px;
+  }
+  .free-badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .free-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--aurora);
+    background: rgba(168, 237, 204, 0.07);
+    border: 1px solid rgba(168, 237, 204, 0.2);
+    border-radius: 2px;
+    padding: 3px 9px;
+  }
+
+  @media (max-width: 520px) {
+    .sticky-cta { right: 16px; bottom: 16px; }
+    .sticky-cta-label { display: none; }
+  }
+  /* ── IONO-DIET FOOTER BLOCK ── */
+  .ionodiet-block {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  @media (max-width: 640px) {
+    .ionodiet-block { grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  .ionodiet-left {
+    text-align: center;
+    border-right: 1px solid var(--border);
+    padding-right: 40px;
+  }
+
+  @media (max-width: 640px) {
+    .ionodiet-left {
+    text-align: center; border-right: none; border-bottom: 1px solid var(--border); padding-right: 0; padding-bottom: 20px; }
+  }
+
+  .ionodiet-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--electric-dim);
+    margin-bottom: 12px;
+  }
+
+  .ionodiet-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--aurora);
+    margin-bottom: 20px;
+  }
+
+  .ionodiet-tags {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ionodiet-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    padding: 4px 10px;
+    border: 1px solid rgba(168,237,204,0.2);
+    border-radius: 2px;
+    color: var(--aurora);
+    background: rgba(168,237,204,0.04);
+    display: inline-block;
+    width: fit-content;
+  }
+
+  .ionodiet-desc {
+    font-size: 13.5px;
+    color: #c0cfe8;
+    line-height: 1.75;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .ionodiet-pis {
+    margin-bottom: 18px;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--aurora-dim);
+    background: rgba(168,237,204,0.03);
+    border-radius: 0 3px 3px 0;
+    text-align: center;
+  }
+
+  .ionodiet-pi-label {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--aurora-dim);
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .ionodiet-pi-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .ionodiet-pi {
+    font-size: 13px;
+    color: #d8e8f8;
+  }
+
+  .ionodiet-pi-inst {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin-left: 4px;
+  }
+
+  .ionodiet-pi-sep {
+    color: var(--border-strong);
+  }
+
+  .ionodiet-partners {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .ionodiet-partner-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .ionodiet-partners-list {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+  }
+
+  .ionodiet-partner-link {
+    color: var(--electric);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .ionodiet-partner-link:hover {
+    color: var(--aurora);
+  }
+
 </style>
 </head>
 <body>
@@ -904,6 +1314,7 @@
     <li><a href="#agenda">Agenda</a></li>
     <li><a href="#loc">LOC</a></li>
     <li><a href="#committee">SOC</a></li>
+    <li><a href="#submit" class="nav-submit">Submit Abstract</a></li>
   </ul>
   <div class="nav-date">19–21 Oct 2026</div>
 </nav>
@@ -943,6 +1354,21 @@
       <div class="meta-row">
         <div class="meta-item"><div class="dot"></div><span>FAPESP Project — IONO_DIET</span></div>
         <div class="meta-item"><div class="dot"></div><span>International Forum</span></div>
+      </div>
+
+      <div class="header-cta">
+        <div>
+          <a href="#submit" class="btn-ghost">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Submit Your Abstract
+          </a>
+          <p style="margin-top:8px; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.08em; color:var(--muted); line-height:1.8;">
+            Free of charge &nbsp;·&nbsp; Open to all researchers &nbsp;·&nbsp; No registration fee
+          </p>
+          <span class="header-cta-note">Deadline: TBD &middot; Oral &amp; Poster</span>
+        </div>
       </div>
     </div>
   </div>
@@ -1071,7 +1497,7 @@
 
   <section id="agenda">
     <div class="section-label">Program &amp; Schedule</div>
-    <h2>Three-day <em>agenda</em> <span class="date-highlight">19–21 October</span></h2>
+    <h2>Three-day <em>schedule</em> <span class="date-highlight">19–21 October</span></h2>
     <p>
       The workshop spans three full days of invited talks, contributed presentations, and round-table discussions. The schedule below shows the time structure of each day; speakers and titles will be assigned after the call for contributions closes.
     </p>
@@ -1086,7 +1512,7 @@
           <div class="day-theme">Session<span class="tbd">· TBD</span></div>
         </div>
         <div class="time-slots">
-          <div class="slot"><span class="slot-time">09:00–09:40</span><span class="slot-content"><span class="type-badge invited">Invited</span><br>TBD</span></div>
+          <div class="slot invited-slot"><span class="slot-time">09:00–09:40</span><span class="slot-content"><span class="type-badge invited">Invited</span><br>TBD</span></div>
           <div class="slot"><span class="slot-time">09:40–10:00</span><span class="slot-content"><span class="type-badge talk">Talk</span><br>TBD</span></div>
           <div class="slot"><span class="slot-time">10:00–10:20</span><span class="slot-content"><span class="type-badge talk">Talk</span><br>TBD</span></div>
           <div class="slot break-slot"><span class="slot-time">10:20–10:50</span><span class="slot-content">Coffee break</span></div>
@@ -1099,7 +1525,7 @@
           <div class="slot"><span class="slot-time">14:00–14:20</span><span class="slot-content"><span class="type-badge talk">Talk</span><br>TBD</span></div>
           <div class="slot"><span class="slot-time">14:20–14:40</span><span class="slot-content"><span class="type-badge talk">Talk</span><br>TBD</span></div>
           <div class="slot"><span class="slot-time">14:40–15:00</span><span class="slot-content"><span class="type-badge talk">Talk</span><br>TBD</span></div>
-          <div class="slot"><span class="slot-time">15:00–15:40</span><span class="slot-content"><span class="type-badge invited">Invited</span><br>TBD</span></div>
+          <div class="slot invited-slot"><span class="slot-time">15:00–15:40</span><span class="slot-content"><span class="type-badge invited">Invited</span><br>TBD</span></div>
           <div class="slot break-slot"><span class="slot-time">15:40–16:00</span><span class="slot-content">Coffee break</span></div>
           <div class="slot"><span class="slot-time">16:00–17:30</span><span class="slot-content"><span class="type-badge round">Round table</span></span></div>
         </div>
@@ -1113,7 +1539,7 @@
           <div class="day-theme">Session<span class="tbd">· TBD</span></div>
         </div>
         <div class="time-slots">
-          <div class="slot"><span class="slot-time">09:00–09:40</span><span class="slot-content"><span class="type-badge invited">Invited</span><br>TBD</span></div>
+          <div class="slot invited-slot"><span class="slot-time">09:00–09:40</span><span class="slot-content"><span class="type-badge invited">Invited</span><br>TBD</span></div>
           <div class="slot"><span class="slot-time">09:40–10:00</span><span class="slot-content"><span class="type-badge talk">Talk</span><br>TBD</span></div>
           <div class="slot"><span class="slot-time">10:00–10:20</span><span class="slot-content"><span class="type-badge talk">Talk</span><br>TBD</span></div>
           <div class="slot break-slot"><span class="slot-time">10:20–10:50</span><span class="slot-content">Coffee break</span></div>
@@ -1126,7 +1552,7 @@
           <div class="slot"><span class="slot-time">14:00–14:20</span><span class="slot-content"><span class="type-badge talk">Talk</span><br>TBD</span></div>
           <div class="slot"><span class="slot-time">14:20–14:40</span><span class="slot-content"><span class="type-badge talk">Talk</span><br>TBD</span></div>
           <div class="slot"><span class="slot-time">14:40–15:00</span><span class="slot-content"><span class="type-badge talk">Talk</span><br>TBD</span></div>
-          <div class="slot"><span class="slot-time">15:00–15:40</span><span class="slot-content"><span class="type-badge invited">Invited</span><br>TBD</span></div>
+          <div class="slot invited-slot"><span class="slot-time">15:00–15:40</span><span class="slot-content"><span class="type-badge invited">Invited</span><br>TBD</span></div>
           <div class="slot break-slot"><span class="slot-time">15:40–16:00</span><span class="slot-content">Coffee break</span></div>
           <div class="slot"><span class="slot-time">16:00–17:30</span><span class="slot-content"><span class="type-badge round">Round table</span></span></div>
         </div>
@@ -1140,19 +1566,19 @@
           <div class="day-theme">Session<span class="tbd">· TBD</span></div>
         </div>
         <div class="time-slots">
-          <div class="slot"><span class="slot-time">09:00–09:40</span><span class="slot-content"><span class="type-badge invited">Invited</span><br>TBD</span></div>
+          <div class="slot invited-slot"><span class="slot-time">09:00–09:40</span><span class="slot-content"><span class="type-badge invited">Invited</span><br>TBD</span></div>
           <div class="slot"><span class="slot-time">09:40–10:00</span><span class="slot-content"><span class="type-badge talk">Talk</span><br>TBD</span></div>
           <div class="slot"><span class="slot-time">10:00–10:20</span><span class="slot-content"><span class="type-badge talk">Talk</span><br>TBD</span></div>
           <div class="slot break-slot"><span class="slot-time">10:20–10:50</span><span class="slot-content">Coffee break</span></div>
           <div class="slot"><span class="slot-time">10:50–11:10</span><span class="slot-content"><span class="type-badge talk">Talk</span><br>TBD</span></div>
           <div class="slot"><span class="slot-time">11:10–11:30</span><span class="slot-content"><span class="type-badge talk">Talk</span><br>TBD</span></div>
           <div class="slot"><span class="slot-time">11:30–11:50</span><span class="slot-content"><span class="type-badge talk">Talk</span><br>TBD</span></div>
-          <div class="slot"><span class="slot-time">11:50–12:30</span><span class="slot-content"><span class="type-badge invited">Invited</span><br>TBD</span></div>
+          <div class="slot invited-slot"><span class="slot-time">11:50–12:30</span><span class="slot-content"><span class="type-badge invited">Invited</span><br>TBD</span></div>
           <div class="slot break-slot"><span class="slot-time">12:30–14:00</span><span class="slot-content">Lunch</span></div>
           <div class="slot"><span class="slot-time">14:00–14:20</span><span class="slot-content"><span class="type-badge talk">Talk</span><br>TBD</span></div>
           <div class="slot"><span class="slot-time">14:20–14:40</span><span class="slot-content"><span class="type-badge talk">Talk</span><br>TBD</span></div>
           <div class="slot"><span class="slot-time">14:40–15:00</span><span class="slot-content"><span class="type-badge talk">Talk</span><br>TBD</span></div>
-          <div class="slot"><span class="slot-time">15:00–15:40</span><span class="slot-content"><span class="type-badge invited">Invited</span><br>TBD</span></div>
+          <div class="slot invited-slot"><span class="slot-time">15:00–15:40</span><span class="slot-content"><span class="type-badge invited">Invited</span><br>TBD</span></div>
           <div class="slot break-slot"><span class="slot-time">15:40–16:00</span><span class="slot-content">Coffee break</span></div>
           <div class="slot"><span class="slot-time">16:00–17:30</span><span class="slot-content"><span class="type-badge round">Round table</span></span></div>
         </div>
@@ -1231,26 +1657,117 @@
     <p style="margin-top: 20px;">
       Contributions are welcome in oral and poster format. The scientific committee will evaluate submissions and provide feedback on texts before final structuring of the program.
     </p>
+
+    <div class="section-cta" id="submit">
+
+      <!-- Top: heading + description -->
+      <div class="scta-header">
+        <div class="scta-heading">
+          <span class="section-label" style="margin-bottom:0;">Call for Contributions</span>
+          <strong>Ready to contribute?</strong>
+        </div>
+        <p class="scta-desc">Submit your abstract for oral or poster consideration. The scientific committee will evaluate all submissions and provide feedback before the program is finalised. Early-career researchers are especially encouraged to apply.</p>
+      </div>
+
+      <div class="scta-divider"></div>
+
+      <!-- Bottom: conditions left, button right -->
+      <div class="scta-footer">
+        <div class="scta-conditions">
+          <span class="scta-conditions-label">Participation conditions</span>
+          <div class="free-badge-row" style="margin-top:8px;">
+            <span class="free-badge">✓ Free of charge</span>
+            <span class="free-badge">✓ No registration fee</span>
+            <span class="free-badge">✓ Open to all career stages</span>
+          </div>
+          <p class="scta-notice">
+            ⚠ Accommodation and travel are the responsibility of each participant.
+          </p>
+        </div>
+        <a href="#" class="btn-submit" id="btn-submit-section" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+            <path d="M2 7l10 7 10-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          Submit Your Abstract
+        </a>
+      </div>
+
+    </div>
   </section>
 
 </main>
 
+<!-- FLOATING STICKY CTA -->
+<div class="sticky-cta">
+  <div>
+    <span class="sticky-cta-label">Free &amp; open workshop</span>
+    <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.1em;color:rgba(168,237,204,0.5);margin-top:2px;">No registration fee</div>
+  </div>
+  <a href="#submit" class="btn-ghost btn-ghost-sm">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Submit Abstract
+  </a>
+</div>
+
+<script>
+  // ── GOOGLE FORMS URL ──────────────────────────────────────────────
+  // Replace the placeholder below with your Google Forms link when ready.
+  var ABSTRACT_FORM_URL = 'https://forms.google.com/REPLACE_WITH_YOUR_FORM_ID';
+  // ─────────────────────────────────────────────────────────────────
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var btn = document.getElementById('btn-submit-section');
+    if (btn) {
+      btn.href = ABSTRACT_FORM_URL;
+    }
+  });
+</script>
+
 <footer>
   <div style="max-width:1000px; margin:0 auto; padding:48px 32px 32px; border-top:1px solid var(--border);">
-    <div style="display:grid; grid-template-columns:3px 1fr; gap:24px; margin-bottom:32px;">
-      <div style="background:linear-gradient(to bottom, var(--aurora), var(--electric)); border-radius:2px;"></div>
-      <div>
-        <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.25em; text-transform:uppercase; color:var(--electric-dim); margin-bottom:12px;">This workshop is a product of</div>
-        <div style="font-family:'Cormorant Garamond',serif; font-size:24px; font-weight:600; color:var(--aurora); margin-bottom:12px;">Project IONO-DIET</div>
-        <p style="font-size:14px; color:#c0cfe8; margin-bottom:10px;">MNS4A is a direct scientific output of <em>IONO-DIET — Ionospheric Detection and Imaging of Earthquakes and Tsunamis in Near-Real Time</em>, a joint Brazil–France initiative funded by FAPESP (Process 2022/03502-6) and ANR (AAPG2022), coordinated by Dr. Esfhan Alam Kherani (INPE) and Dr. Elvira Astafyeva (IPGP/CNRS).</p>
-        <p style="font-size:14px; color:#c0cfe8; margin-bottom:20px;">The project aims to develop, for the first time, an ionosphere-based system for near-real-time detection of earthquakes and tsunamis from GNSS-TEC measurements, uniting researchers from INPE, IPGP, NORSAR and ERAU across a 48-month effort (2023–2026).</p>
-        <div style="display:flex; flex-wrap:wrap; gap:8px;">
-          <span style="font-family:'DM Mono',monospace; font-size:11px; padding:3px 10px; border:1px solid rgba(168,237,204,0.25); border-radius:2px; color:var(--aurora); background:rgba(168,237,204,0.04);">FAPESP 2022/03502-6</span>
-          <span style="font-family:'DM Mono',monospace; font-size:11px; padding:3px 10px; border:1px solid rgba(168,237,204,0.25); border-radius:2px; color:var(--aurora); background:rgba(168,237,204,0.04);">ANR — AAPG2022</span>
-          <span style="font-family:'DM Mono',monospace; font-size:11px; padding:3px 10px; border:1px solid rgba(168,237,204,0.25); border-radius:2px; color:var(--aurora); background:rgba(168,237,204,0.04);">INPE · IPGP · NORSAR · ERAU</span>
-          <span style="font-family:'DM Mono',monospace; font-size:11px; padding:3px 10px; border:1px solid rgba(168,237,204,0.25); border-radius:2px; color:var(--aurora); background:rgba(168,237,204,0.04);">2023 – 2026</span>
+    <div class="ionodiet-block">
+
+      <!-- Left column: identity -->
+      <div class="ionodiet-left">
+        <div class="ionodiet-eyebrow">This workshop is a product of</div>
+        <div class="ionodiet-title">Project<br>IONO-DIET</div>
+        <div class="ionodiet-tags">
+          <span class="ionodiet-tag">FAPESP 2022/03502-6</span>
+          <span class="ionodiet-tag">ANR — AAPG2022</span>
+          <span class="ionodiet-tag">2023 – 2026</span>
         </div>
       </div>
+
+      <!-- Right column: description -->
+      <div class="ionodiet-right">
+        <p class="ionodiet-desc">
+          MNS4A is a direct scientific output of <em>IONO-DIET — Ionospheric Detection and Imaging of Earthquakes and Tsunamis in Near-Real Time</em>, a joint Brazil–France initiative aimed at developing the first ionosphere-based system for near-real-time detection of earthquakes and tsunamis from GNSS-TEC measurements.
+        </p>
+        <div class="ionodiet-pis">
+          <span class="ionodiet-pi-label">Principal Investigators</span>
+          <div class="ionodiet-pi-row">
+            <span class="ionodiet-pi">Dr. Esfhan Alam Kherani <a href="https://orcid.org/0000-0003-0182-2252" target="_blank" rel="noopener" class="orcid-link" title="ORCID iD"><svg class="orcid-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><circle fill="#A6CE39" cx="128" cy="128" r="128"/><path fill="#fff" d="M86.3 186.2H70.9V79.1h15.4v107.1zM108.9 79.1h41.6c39.6 0 57 28.3 57 53.6 0 27.5-21.5 53.6-56.8 53.6h-41.8V79.1zm15.4 93.3h24.5c34.9 0 42.9-26.5 42.9-39.7 0-21.3-13.7-39.4-43.7-39.4h-23.7v79.1zM88.7 56.8c0 5.5-4.5 10.1-10.1 10.1s-10.1-4.6-10.1-10.1c0-5.6 4.5-10.1 10.1-10.1s10.1 4.5 10.1 10.1z"/></svg></a> <span class="ionodiet-pi-inst">INPE</span></span>
+            <span class="ionodiet-pi-sep">·</span>
+            <span class="ionodiet-pi">Dr. Elvira Astafyeva <a href="https://orcid.org/0000-0002-3819-3835" target="_blank" rel="noopener" class="orcid-link" title="ORCID iD"><svg class="orcid-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><circle fill="#A6CE39" cx="128" cy="128" r="128"/><path fill="#fff" d="M86.3 186.2H70.9V79.1h15.4v107.1zM108.9 79.1h41.6c39.6 0 57 28.3 57 53.6 0 27.5-21.5 53.6-56.8 53.6h-41.8V79.1zm15.4 93.3h24.5c34.9 0 42.9-26.5 42.9-39.7 0-21.3-13.7-39.4-43.7-39.4h-23.7v79.1zM88.7 56.8c0 5.5-4.5 10.1-10.1 10.1s-10.1-4.6-10.1-10.1c0-5.6 4.5-10.1 10.1-10.1s10.1 4.5 10.1 10.1z"/></svg></a> <span class="ionodiet-pi-inst">IPGP / CNRS</span></span>
+          </div>
+        </div>
+        <div class="ionodiet-partners">
+          <span class="ionodiet-partner-label">Partner institutions</span>
+          <span class="ionodiet-partners-list">
+            <a href="https://www.gov.br/inpe" target="_blank" rel="noopener" class="ionodiet-partner-link">INPE</a>
+            &nbsp;·&nbsp;
+            <a href="https://www.ipgp.fr" target="_blank" rel="noopener" class="ionodiet-partner-link">IPGP</a>
+            &nbsp;·&nbsp;
+            <a href="https://www.norsar.no" target="_blank" rel="noopener" class="ionodiet-partner-link">NORSAR</a>
+            &nbsp;·&nbsp;
+            <a href="https://erau.edu" target="_blank" rel="noopener" class="ionodiet-partner-link">ERAU</a>
+          </span>
+        </div>
+      </div>
+
     </div>
 
 
@@ -1270,6 +1787,16 @@
         </a>
         <a class="logo-item" href="https://www.gov.br/inpe" target="_blank" rel="noopener" title="INPE">
           <img src="img/logo_inpe.png" alt="INPE"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="logo-fallback">INPE</div>
+        </a>
+        <a class="logo-item" href="https://www.gov.br/planalto/pt-br" target="_blank" rel="noopener" title="INPE">
+          <img src="img/logo_gf.png" alt="INPE"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="logo-fallback">INPE</div>
+        </a>
+        <a class="logo-item" href="https://www.unb.br/" target="_blank" rel="noopener" title="INPE">
+          <img src="img/logo_unb.png" alt="INPE"
                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="logo-fallback">INPE</div>
         </a>
