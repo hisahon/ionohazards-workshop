@@ -1013,6 +1013,30 @@
 
   .btn-submit svg { flex-shrink: 0; }
 
+  .pill-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--electric);
+    text-decoration: none;
+    border: 1px solid rgba(79,195,247,0.25);
+    background: rgba(79,195,247,0.05);
+    border-radius: 3px;
+    padding: 7px 14px;
+    transition: background 0.18s, border-color 0.18s, transform 0.18s, box-shadow 0.18s;
+  }
+  .pill-link:hover {
+    background: rgba(79,195,247,0.13);
+    border-color: rgba(79,195,247,0.55);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(79,195,247,0.2);
+  }
+  .pill-link:active { transform: translateY(0); }
+
   /* Header CTA wrapper */
   .header-cta-note {
     font-family: 'DM Mono', monospace;
@@ -1963,7 +1987,7 @@
           <div style="font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:600; color:var(--white); margin-bottom:3px;">Ema Palace Hotel</div>
           <div style="font-size:11px; color:var(--muted); margin-bottom:10px;">Rua Jorge Barbosa Moreira, 70</div>
           <div style="display:flex; gap:6px;">
-            <a href="https://www.hotelemapalace.com.br/en/" target="_blank" rel="noopener" style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.06em; color:var(--electric); text-decoration:none; border:1px solid rgba(79,195,247,0.25); background:rgba(79,195,247,0.05); border-radius:2px; padding:3px 9px;">Website</a>
+            <a href="https://www.hotelemapalace.com.br/en/" target="_blank" rel="noopener" class="pill-link" style="font-size:10px; padding:3px 9px;">Website</a>
             <a href="tel:+551239255555" style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.06em; color:var(--ink-soft); text-decoration:none; border:1px solid var(--border); border-radius:2px; padding:3px 9px;">+55 12 3925-5555</a>
           </div>
         </div>
@@ -1972,7 +1996,7 @@
           <div style="font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:600; color:var(--white); margin-bottom:3px;">Hotel Nacional Inn SJC</div>
           <div style="font-size:11px; color:var(--muted); margin-bottom:10px;">Av. Deputado Benedito Matarazzo, 9009</div>
           <div style="display:flex; gap:6px;">
-            <a href="https://www.nacionalinn.com.br/hoteis/hotel-nacional-inn-sao-jose-dos-campos" target="_blank" rel="noopener" style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.06em; color:var(--electric); text-decoration:none; border:1px solid rgba(79,195,247,0.25); background:rgba(79,195,247,0.05); border-radius:2px; padding:3px 9px;">Website</a>
+            <a href="https://www.nacionalinn.com.br/hoteis/hotel-nacional-inn-sao-jose-dos-campos" target="_blank" rel="noopener" class="pill-link" style="font-size:10px; padding:3px 9px;">Website</a>
             <a href="tel:+551239470000" style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.06em; color:var(--ink-soft); text-decoration:none; border:1px solid var(--border); border-radius:2px; padding:3px 9px;">+55 12 3947-0000</a>
           </div>
         </div>
@@ -1981,7 +2005,7 @@
           <div style="font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:600; color:var(--white); margin-bottom:3px;">Ibis Colinas</div>
           <div style="font-size:11px; color:var(--muted); margin-bottom:10px;">Av. Dr. Jorge Zarur, 81 Torre I</div>
           <div style="display:flex; gap:6px;">
-            <a href="https://www.accorhotels.com/gb/hotel-6035-ibis-sao-jose-dos-campos-colinas/index.shtml" target="_blank" rel="noopener" style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.06em; color:var(--electric); text-decoration:none; border:1px solid rgba(79,195,247,0.25); background:rgba(79,195,247,0.05); border-radius:2px; padding:3px 9px;">Website</a>
+            <a href="https://www.accorhotels.com/gb/hotel-6035-ibis-sao-jose-dos-campos-colinas/index.shtml" target="_blank" rel="noopener" class="pill-link" style="font-size:10px; padding:3px 9px;">Website</a>
             <a href="tel:+551239042400" style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.06em; color:var(--ink-soft); text-decoration:none; border:1px solid var(--border); border-radius:2px; padding:3px 9px;">+55 12 3904-2400</a>
           </div>
         </div>
@@ -1990,7 +2014,7 @@
           <div style="font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:600; color:var(--white); margin-bottom:3px;">Mercure São José dos Campos</div>
           <div style="font-size:11px; color:var(--muted); margin-bottom:10px;">Av. Dr. Jorge Zarur, 81 Tower II</div>
           <div style="display:flex; gap:6px;">
-            <a href="https://www.accorhotels.com/gb/hotel-5168-mercure-sao-jose-dos-campos-hotel/index.shtml" target="_blank" rel="noopener" style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.06em; color:var(--electric); text-decoration:none; border:1px solid rgba(79,195,247,0.25); background:rgba(79,195,247,0.05); border-radius:2px; padding:3px 9px;">Website</a>
+            <a href="https://www.accorhotels.com/gb/hotel-5168-mercure-sao-jose-dos-campos-hotel/index.shtml" target="_blank" rel="noopener" class="pill-link" style="font-size:10px; padding:3px 9px;">Website</a>
             <a href="tel:+551239042300" style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.06em; color:var(--ink-soft); text-decoration:none; border:1px solid var(--border); border-radius:2px; padding:3px 9px;">+55 12 3904-2300</a>
           </div>
         </div>
@@ -1999,7 +2023,7 @@
           <div style="font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:600; color:var(--white); margin-bottom:3px;">Astro Hotel</div>
           <div style="font-size:11px; color:var(--muted); margin-bottom:10px;">Av. Dr. Nelson D'Àvila, 933</div>
           <div style="display:flex; gap:6px;">
-            <a href="http://www.astrohotel.com.br" target="_blank" rel="noopener" style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.06em; color:var(--electric); text-decoration:none; border:1px solid rgba(79,195,247,0.25); background:rgba(79,195,247,0.05); border-radius:2px; padding:3px 9px;">Website</a>
+            <a href="http://www.astrohotel.com.br" target="_blank" rel="noopener" class="pill-link" style="font-size:10px; padding:3px 9px;">Website</a>
             <a href="tel:+551239416999" style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.06em; color:var(--ink-soft); text-decoration:none; border:1px solid var(--border); border-radius:2px; padding:3px 9px;">+55 12 3941-6999</a>
           </div>
         </div>
@@ -2008,7 +2032,7 @@
           <div style="font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:600; color:var(--white); margin-bottom:3px;">Dan Inn São José dos Campos</div>
           <div style="font-size:11px; color:var(--muted); margin-bottom:10px;">Av. João Guilhermino, 287</div>
           <div style="display:flex; gap:6px;">
-            <a href="http://www.daninnhotel.com.br/hoteis/sao_jose/principal.html" target="_blank" rel="noopener" style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.06em; color:var(--electric); text-decoration:none; border:1px solid rgba(79,195,247,0.25); background:rgba(79,195,247,0.05); border-radius:2px; padding:3px 9px;">Website</a>
+            <a href="http://www.daninnhotel.com.br/hoteis/sao_jose/principal.html" target="_blank" rel="noopener" class="pill-link" style="font-size:10px; padding:3px 9px;">Website</a>
             <a href="tel:+551239418588" style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.06em; color:var(--ink-soft); text-decoration:none; border:1px solid var(--border); border-radius:2px; padding:3px 9px;">+55 12 3941-8588</a>
           </div>
         </div>
@@ -2017,7 +2041,7 @@
           <div style="font-family:'Cormorant Garamond',serif; font-size:16px; font-weight:600; color:var(--white); margin-bottom:3px;">Novotel São José dos Campos</div>
           <div style="font-size:11px; color:var(--muted); margin-bottom:10px;">Av. Dr. Nelson D'Àvila, 2200</div>
           <div style="display:flex; gap:6px;">
-            <a href="http://www.novotel.com/gb/hotel-0472-novotel-sao-jose-dos-campos/index.shtml" target="_blank" rel="noopener" style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.06em; color:var(--electric); text-decoration:none; border:1px solid rgba(79,195,247,0.25); background:rgba(79,195,247,0.05); border-radius:2px; padding:3px 9px;">Website</a>
+            <a href="http://www.novotel.com/gb/hotel-0472-novotel-sao-jose-dos-campos/index.shtml" target="_blank" rel="noopener" class="pill-link" style="font-size:10px; padding:3px 9px;">Website</a>
             <a href="tel:+551240097800" style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.06em; color:var(--ink-soft); text-decoration:none; border:1px solid var(--border); border-radius:2px; padding:3px 9px;">+55 12 4009-7800</a>
           </div>
         </div>
@@ -2059,11 +2083,11 @@
         <h3>Find a Brazilian Embassy</h3>
         <p>Locate the nearest Brazilian consular post in your country and check the latest entry requirements for Brazilian visa applicants.</p>
         <div style="display:flex; flex-direction:column; gap:8px; margin-top:12px;">
-          <a href="https://www.gov.br/mre/en?set_language=en" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:7px; font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--electric); text-decoration:none; border:1px solid rgba(79,195,247,0.25); background:rgba(79,195,247,0.05); border-radius:3px; padding:7px 14px; transition:background 0.2s;">
+          <a href="https://www.gov.br/mre/en?set_language=en" target="_blank" rel="noopener" class="pill-link">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="currentColor" stroke-width="2"/></svg>
             MRE — Visa details
           </a>
-          <a href="https://www.gov.br/mre/pt-br/assuntos/Embaixadas-Consulados-Missoes/do-brasil-no-exterior" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:7px; font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--electric); text-decoration:none; border:1px solid rgba(79,195,247,0.25); background:rgba(79,195,247,0.05); border-radius:3px; padding:7px 14px; transition:background 0.2s;">
+          <a href="https://www.gov.br/mre/pt-br/assuntos/Embaixadas-Consulados-Missoes/do-brasil-no-exterior" target="_blank" rel="noopener" class="pill-link">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="2"/></svg>
             Locate a Brazilian Embassy
           </a>
